@@ -280,19 +280,22 @@ section {
   color: var(--color-primary);
 }
 
-.header .btn-book-a-table,
-.header .btn-book-a-table:focus {
+.header .btn-red-button,
+.header .btn-red-button:focus {
   font-size: 14px;
   color: #fff;
   background: var(--color-primary);
   padding: 8px 20px;
-  margin-left: 30px;
   border-radius: 50px;
   transition: 0.3s;
 }
 
-.header .btn-book-a-table:hover,
-.header .btn-book-a-table:focus:hover {
+.header .btn-login-sign-up-group {
+  margin-left: 30px;
+}
+
+.header .btn-red-button:hover,
+.header .btn-red-button:focus:hover {
   color: #fff;
   background: rgba(206, 18, 18, 0.8);
 }
@@ -1170,36 +1173,36 @@ section {
 }
 
 /*--------------------------------------------------------------
-# Book A Table Section
+# Sign Up Section
 --------------------------------------------------------------*/
-.book-a-table .reservation-img {
+.sign-up-form .reservation-img {
   min-height: 500px;
   background-size: cover;
   background-position: center;
 }
 
-.book-a-table .reservation-form-bg {
+.sign-up-form .reservation-form-bg {
   background: rgba(55, 55, 63, 0.04);
 }
 
-.book-a-table .php-email-form {
+.sign-up-form .php-email-form {
   padding: 40px;
 }
 
 @media (max-width: 575px) {
-  .book-a-table .php-email-form {
+  .sign-up-form .php-email-form {
     padding: 20px;
   }
 }
 
-.book-a-table .php-email-form h3 {
+.sign-up-form .php-email-form h3 {
   font-size: 14px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
-.book-a-table .php-email-form h4 {
+.sign-up-form .php-email-form h4 {
   font-size: 14px;
   font-weight: 700;
   text-transform: uppercase;
@@ -1207,12 +1210,12 @@ section {
   margin: 20px 0 0 0;
 }
 
-.book-a-table .php-email-form p {
+.sign-up-form .php-email-form p {
   font-size: 14px;
   margin-bottom: 20px;
 }
 
-.book-a-table .php-email-form .error-message {
+.sign-up-form .php-email-form .error-message {
   display: none;
   color: #fff;
   background: #df1529;
@@ -1222,7 +1225,7 @@ section {
   font-weight: 600;
 }
 
-.book-a-table .php-email-form .sent-message {
+.sign-up-form .php-email-form .sent-message {
   display: none;
   color: #fff;
   background: #059652;
@@ -1232,7 +1235,7 @@ section {
   font-weight: 600;
 }
 
-.book-a-table .php-email-form .loading {
+.sign-up-form .php-email-form .loading {
   display: none;
   background: #fff;
   text-align: center;
@@ -1240,7 +1243,7 @@ section {
   margin-bottom: 24px;
 }
 
-.book-a-table .php-email-form .loading:before {
+.sign-up-form .php-email-form .loading:before {
   content: "";
   display: inline-block;
   border-radius: 50%;
@@ -1252,28 +1255,28 @@ section {
   animation: animate-loading 1s linear infinite;
 }
 
-.book-a-table .php-email-form input,
-.book-a-table .php-email-form textarea {
+.sign-up-form .php-email-form input,
+.sign-up-form .php-email-form textarea {
   border-radius: 0;
   box-shadow: none;
   font-size: 14px;
   border-radius: 0;
 }
 
-.book-a-table .php-email-form input:focus,
-.book-a-table .php-email-form textarea:focus {
+.sign-up-form .php-email-form input:focus,
+.sign-up-form .php-email-form textarea:focus {
   border-color: var(--color-primary);
 }
 
-.book-a-table .php-email-form input {
+.sign-up-form .php-email-form input {
   padding: 12px 15px;
 }
 
-.book-a-table .php-email-form textarea {
+.sign-up-form .php-email-form textarea {
   padding: 12px 15px;
 }
 
-.book-a-table .php-email-form button[type=submit] {
+.sign-up-form .btn-red-button {
   background: var(--color-primary);
   border: 0;
   padding: 14px 60px;
@@ -1282,7 +1285,7 @@ section {
   border-radius: 50px;
 }
 
-.book-a-table .php-email-form button[type=submit]:hover {
+.sign-up-form .btn-red-button:hover {
   background: #ec2727;
 }
 
@@ -1511,7 +1514,7 @@ section {
   margin-bottom: 30px;
 }
 
-.hero .btn-book-a-table {
+.hero .btn-red-button {
   font-weight: 500;
   font-size: 14px;
   letter-spacing: 1px;
@@ -1524,7 +1527,7 @@ section {
   box-shadow: 0 8px 28px rgba(206, 18, 18, 0.2);
 }
 
-.hero .btn-book-a-table:hover {
+.hero .btn-red-button:hover {
   background: rgba(206, 18, 18, 0.8);
   box-shadow: 0 8px 28px rgba(206, 18, 18, 0.45);
 }
