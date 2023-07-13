@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-  <head>
-  <meta charset="ISO-8859-1" />
-  <title>Takoyomai</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<html lang="en">
 
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Takoyomai</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
   <!-- Favicons -->
   <link href="LOGO.png" rel="icon">
 
@@ -21,11 +23,6 @@
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
-  <!-- Icons -->
-  <link rel="stylesheet" href="assets/icons/ionicons.min.css">
-
-  <script src="assets/vendor/popper/popper.js"></script>
 
   <!-- Template Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
@@ -56,7 +53,7 @@
 
       <div class="btn-login-signup-group">
         <div class="input-group">
-          <a class="btn-red-button" type="button" data-toggle="modal" data-target="#signInModal">Log in</a>
+          <a class="btn-red-button" href="#btn-log-in">Log in</a>
           <a class="btn-red-button" href="#btn-sign-up">Sign up</a>                
         </div>
       </div>
@@ -99,8 +96,8 @@
         <div class="row gy-4">
           <div class="col-lg-7 position-relative about-img" style="background-image: url(assets/img/about.jpg) ;" data-aos="fade-up" data-aos-delay="150">
             <div class="call-us position-absolute">
-              <h4>Book a Table</h4>
-              <p>+1 5589 55488 55</p>
+              <h4>Order a Food</h4>
+              <p>+63 967 2630 299</p>
             </div>
           </div>
           <div class="col-lg-5 d-flex align-items-end" data-aos="fade-up" data-aos-delay="300">
@@ -178,28 +175,28 @@
 
           <div class="col-lg-3 col-md-6">
             <div class="stats-item text-center w-100 h-100">
-              <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
+              <span data-purecounter-start="0" data-purecounter-end="27" data-purecounter-duration="1" class="purecounter"></span>
               <p>Clients</p>
             </div>
           </div><!-- End Stats Item -->
 
           <div class="col-lg-3 col-md-6">
             <div class="stats-item text-center w-100 h-100">
-              <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
+              <span data-purecounter-start="0" data-purecounter-end="122" data-purecounter-duration="1" class="purecounter"></span>
               <p>Projects</p>
             </div>
           </div><!-- End Stats Item -->
 
           <div class="col-lg-3 col-md-6">
             <div class="stats-item text-center w-100 h-100">
-              <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="1" class="purecounter"></span>
+              <span data-purecounter-start="0" data-purecounter-end="143" data-purecounter-duration="1" class="purecounter"></span>
               <p>Hours Of Support</p>
             </div>
           </div><!-- End Stats Item -->
 
           <div class="col-lg-3 col-md-6">
             <div class="stats-item text-center w-100 h-100">
-              <span data-purecounter-start="0" data-purecounter-end="32" data-purecounter-duration="1" class="purecounter"></span>
+              <span data-purecounter-start="0" data-purecounter-end="6" data-purecounter-duration="1" class="purecounter"></span>
               <p>Workers</p>
             </div>
           </div><!-- End Stats Item -->
@@ -257,7 +254,7 @@
                   Filled with octobits. Topped with takoyaki sauce, japanese mayo, aonori (seaweed flakes) , togarashi (chili powder) and bonito flakes.
                 </p>
                 <p class="price">
-                  $14.95
+                  ₱89.00
                 </p>
               </div><!-- Menu Item -->
 
@@ -268,7 +265,7 @@
                   Filled with cheese and topped with takoyaki sauce, jalapeño cheese sauce, japanese mayo, pork floss.
                 </p>
                 <p class="price">
-                  $5.95
+                  ₱89.00
                 </p>
               </div><!-- Menu Item -->
 
@@ -279,7 +276,7 @@
                   Filled with octobits, shrimp and crab sticks. Topped with takoyaki sauce, japanese mayo, bonito flakes, shredded seaweeds and japanese seasonings.
                 </p>
                 <p class="price">
-                  $8.95
+                  ₱89.00
                 </p>
               </div><!-- Menu Item -->
 
@@ -290,7 +287,7 @@
                   Filled with octobits. Topped with takoyaki sauce, japanese mayo, aonori (seaweed flakes)
                 </p>
                 <p class="price">
-                  $12.95
+                  ₱89.00
                 </p>
               </div><!-- Menu Item -->
 
@@ -301,7 +298,7 @@
                   Filled with quail's egg. Topped with takoyaki sauce, japanese mayo, shredded seaweeds and chopped onion leaves
                 </p>
                 <p class="price">
-                  $12.95
+                  ₱89.00
                 </p>
               </div><!-- Menu Item -->
 
@@ -312,7 +309,7 @@
                   Filled with crab sticks. Topped with takoyaki sauce, japanese mayo, aonori (seaweed flakes) , togarashi (chili powder) and bonito flakes.
                 </p>
                 <p class="price">
-                  $9.95
+                  ₱89.00
                 </p>
               </div><!-- Menu Item -->
             </div>
@@ -408,11 +405,11 @@
               <div class="col-lg-4 menu-item">
                 <a href="assets/img/drinks/BANANA MILK COFFEE.webp" class="glightbox"><img src="assets/img/drinks/BANANA MILK COFFEE.webp" class="menu-img img-fluid" alt=""></a>
                 <h4>Banana Milk Coffee</h4>
-                <!-- <p class="ingredients">
-                  Lorem, deren, trataro, filede, nerada
-                </p> -->
+                <p class="ingredients">
+                  Adding creamy smooth banana milk to your morning cold brew makes it taste rich and delicious. Talk about an eye-opening good-for-you breakfast in a cup!
+                </p> 
                 <p class="price">
-                  $5.95
+                  ₱89.00
                 </p>
               </div><!-- Menu Item -->
 
@@ -420,55 +417,55 @@
                 <a href="assets/img/drinks/Caramel Coconut Iced Coffee.webp" class="glightbox"><img src="assets/img/drinks/Caramel Coconut Iced Coffee.webp" class="menu-img img-fluid" alt=""></a>
                 <h4>Caramel Coconut Iced Coffee
                 </h4>
-                <!-- <p class="ingredients">
-                  Lorem, deren, trataro, filede, nerada
-                </p> -->
+                <p class="ingredients">
+                  Refreshing and light, Iced Coconut Caramel Macchiato is a wonderful blend of iced coffee, coconut milk and caramel syrup. Cool and satisfying, it’s a wonderful way to beat the heat during summer’s last steamy days
+                </p>
                 <p class="price">
-                  $14.95
+                  ₱89.00
                 </p>
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
                 <a href="assets/img/drinks/Chocolate-y Iced Mocha.webp" class="glightbox"><img src="assets/img/drinks/Chocolate-y Iced Mocha.webp" class="menu-img img-fluid" alt=""></a>
                 <h4>Chocolate Iced Mocha</h4>
-                <!-- <p class="ingredients">
-                  Lorem, deren, trataro, filede, nerada
-                </p> -->
+                <p class="ingredients">
+                  Bold coffee flavours with a chocolatey, ice-cold vibe.  Make one just for you, your way. The rich combination of our full-bodied espresso with a sweet mocha sauce, milk and ice are elevated in the blending of these flavours. Topped with ice and whipped cream, you'll enjoy this dreamy cold beverage that boasts full and bold flavours
+                </p>
                 <p class="price">
-                  $8.95
+                  ₱89.00
                 </p>
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
                 <a href="assets/img/drinks/Cold-Brewed Coffee.webp" class="glightbox"><img src="assets/img/drinks/Cold-Brewed Coffee.webp" class="menu-img img-fluid" alt=""></a>
                 <h4>Cold-brewed Dark Coffee</h4>
-                <!-- <p class="ingredients">
-                  Lorem, deren, trataro, filede, nerada
-                </p> -->
+                <p class="ingredients">
+                  dark coffee is usually prepared in hot, iced, or cold versions. It is a strong, rich, and refreshing drink that has many health benefits to kick-start your day.
+                </p>
                 <p class="price">
-                  $12.95
+                  ₱89.00
                 </p>
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
                 <a href="assets/img/drinks/Easy Iced Coffee.webp" class="glightbox"><img src="assets/img/drinks/Easy Iced Coffee.webp" class="menu-img img-fluid" alt=""></a>
                 <h4>Easy Iced Coffee</h4>
-                <!-- <p class="ingredients">
-                  Lorem, deren, trataro, filede, nerada
-                </p> -->
+                <p class="ingredients">
+                  Instant coffee, ice, milk, sugar
+                </p>
                 <p class="price">
-                  $12.95
+                  ₱89.00
                 </p>
               </div><!-- Menu Item -->
 
               <div class="col-lg-4 menu-item">
                 <a href="assets/img/drinks/Iced Caramel Macchiato.webp" class="glightbox"><img src="assets/img/drinks/Iced Caramel Macchiato.webp" class="menu-img img-fluid" alt=""></a>
                 <h4>Iced Caramel Macchiato</h4>
-                <!-- <p class="ingredients">
-                  Lorem, deren, trataro, filede, nerada
-                </p> -->
+                <p class="ingredients">
+                  We combine our rich, full-bodied espresso with vanilla-flavored syrup, milk and ice, then top it off with a caramel drizzle for an oh-so-sweet finish.
+                </p>
                 <p class="price">
-                  $9.95
+                  ₱89.00
                 </p>
               </div><!-- Menu Item -->
 
@@ -564,7 +561,7 @@
 
         <div class="section-header">
           <h2>Chefs</h2>
-          <p>Our <span>Proffesional</span> Chefs</p>
+          <p>Our <span>Proffesional</span> Chefs/Barista</p>
         </div>
 
         <div class="row gy-4">
@@ -646,7 +643,6 @@
 
           <div class="col-lg-8 d-flex align-items-center reservation-form-bg">
             <form role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
-              <div class="text-center" style="color: green;"> Registered Successfully!</div>
               <div class="row gy-4">
                 <div class="col-lg-6 col-md-6">
                   <input type="text" name="firstName" class="form-control" id="firstName" placeholder="First Name" data-rule="minlen:1" data-msg="Please enter any">
@@ -679,15 +675,11 @@
                 </div>
               </div>
               <div class="mb-3">
-                <div id="errorSignUp" class="error-message"></div>
-                <div class="sent-message">Your booking request was sent. We will call back or send an Email to confirm your reservation. Thank you!</div>
+                <div id="signUpLoading" class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your order request was sent. We will call back or send an Email to confirm your reservation. Thank you!</div>
               </div>
-              <div class="text-center">
-                <button type="button" class="btn-red-button" id="btnSignUp">
-                  <span id="signUpLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                  Sign Up!
-                </button>
-              </div>
+              <div class="text-center"><button type="button" class="btn-red-button" id="btnSignUp">Sign Up!</button></div>
             </form>
           </div><!-- End Reservation Form -->
 
@@ -732,7 +724,7 @@
         </div>
 
         <div class="mb-3">
-          <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d2734.881506587348!2d121.16745909875702!3d14.21195493282899!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sph!4v1689062499075!5m2!1sen!2sph" frameborder="0" allowfullscreen></iframe>
+          <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d43758.20552635094!2d121.16136237634161!3d14.211430570502863!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd622b2e539df1%3A0x9102ac773e8a0b99!2sCity%20College%20of%20Calamba!5e0!3m2!1sen!2sph!4v1689222403315!5m2!1sen!2sph" frameborder="0" allowfullscreen></iframe>
         </div><!-- End Google Maps -->
 
         <div class="row gy-4">
@@ -742,7 +734,7 @@
               <i class="icon bi bi-map flex-shrink-0"></i>
               <div>
                 <h3>Our Address</h3>
-                <p>A108 Adam Street, New York, NY 535022</p>
+                <p>6569+Q3R, General Lim St, Calamba, 4027 Laguna</p>
               </div>
             </div>
           </div><!-- End Info Item -->
@@ -752,7 +744,7 @@
               <i class="icon bi bi-envelope flex-shrink-0"></i>
               <div>
                 <h3>Email Us</h3>
-                <p>contact@example.com</p>
+                <p>takoyomai@gmail.com</p>
               </div>
             </div>
           </div><!-- End Info Item -->
@@ -762,7 +754,7 @@
               <i class="icon bi bi-telephone flex-shrink-0"></i>
               <div>
                 <h3>Call Us</h3>
-                <p>+1 5589 55488 55</p>
+                <p>+63 967 2630 299</p>
               </div>
             </div>
           </div><!-- End Info Item -->
@@ -807,52 +799,6 @@
       </div>
     </section><!-- End Contact Section -->
 
-    <!-- Modal -->
-    <div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close d-flex align-items-center justify-content-center" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true" class="ion-ios-close"></span>
-            </button>
-          </div>
-          <div class="modal-body p-4 p-md-5">
-            <div class="icon d-flex align-items-center justify-content-center">
-              <span class="ion-ios-person"></span>
-            </div>
-            <h3 class="text-center mb-4">Sign In</h3>
-            <form class="login-form">
-              <div class="form-group">
-                <input type="text" class="form-control rounded-left" placeholder="Username">
-              </div>
-              <div class="form-group d-flex">
-                <input type="password" class="form-control rounded-left" placeholder="Password">
-              </div>
-              <div class="form-group">
-                <button type="submit" class="form-control btn btn-primary rounded submit px-3">Login</button>
-              </div>
-              <div class="form-group d-md-flex">
-                <div class="form-check w-50">
-                  <label class="custom-control fill-checkbox">
-                    <input type="checkbox" class="fill-control-input">
-                    <span class="fill-control-indicator"></span>
-                    <span class="fill-control-description">Remember Me</span>
-                  </label>
-                </div>
-                <div class="w-50 text-md-right">
-                  <a href="#">Forgot Password</a>
-                </div>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer justify-content-center">
-            <p>Not a member? <a href="#btn-sign-up">Create an account</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Modal End -->
-
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
@@ -865,8 +811,8 @@
           <div>
             <h4>Address</h4>
             <p>
-              A108 Adam Street <br>
-              New York, NY 535022 - US<br>
+              6569+Q3R, General Lim St <br>
+              Calamba, 4027 Laguna - PH<br>
             </p>
           </div>
 
@@ -877,8 +823,8 @@
           <div>
             <h4>Reservations</h4>
             <p>
-              <strong>Phone:</strong> +1 5589 55488 55<br>
-              <strong>Email:</strong> info@example.com<br>
+              <strong>Phone:</strong> +63 967 2630 299<br>
+              <strong>Email:</strong> takoyomai@gmail.com<br>
             </p>
           </div>
         </div>
@@ -926,9 +872,7 @@
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/jquery-3.7.0/jquery-3.7.0.js"></script>
-  <script src="assets/vendor/jquery-3.7.0/jquery-3.7.0.min.js"></script>
-  <!-- <script src="assets/vendor/jquery-3.7.0/jquery-3.7.0.min.map"></script> -->
+  <script src="assets/vendor/jquery/jquery-3.7.0.js"></script>
 
   <!-- AppUtil -->
   <script src="assets/js/jsUtils/AppUtil.js"></script>
