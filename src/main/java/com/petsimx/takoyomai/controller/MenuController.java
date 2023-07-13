@@ -11,13 +11,13 @@ import com.petsimx.takoyomai.model.Menu;
 import com.petsimx.takoyomai.service.MenuService;
 
 @RestController
-@RequestMapping("/menus")
+@RequestMapping("/menu")
 public class MenuController {
 
 	@Autowired
 	private MenuService menuService;
 	
-	@PostMapping
+	@PostMapping( "/create" )
 	public ResponseEntity<Menu> saveMenu(@RequestBody Menu menu) {
 		
 		return new ResponseEntity<Menu>(menuService.saveMenu(menu), HttpStatus.CREATED);

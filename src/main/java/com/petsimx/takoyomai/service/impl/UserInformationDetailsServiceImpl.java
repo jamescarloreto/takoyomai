@@ -7,21 +7,21 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import com.petsimx.takoyomai.dto.UserInfoDetailsDto;
+import com.petsimx.takoyomai.bean.UserInfoDetailsBean;
 import com.petsimx.takoyomai.exceptions.EmailNotFoundException;
-import com.petsimx.takoyomai.model.UserInformationDetails;
+import com.petsimx.takoyomai.model.UserInformationDetail;
 import com.petsimx.takoyomai.repository.UserInformationDetailsRepository;
 
 @Component
-public class UserInformationDetailsService implements UserDetailsService {
+public class UserInformationDetailsServiceImpl implements UserDetailsService {
 	
 	private UserInformationDetailsRepository userInformationDetailsRepository;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
-		Optional<UserInformationDetails> userInformationDetails = userInformationDetailsRepository.findByEmail(username);
+		Optional<UserInformationDetail> userInformationDetails = userInformationDetailsRepository.findByEmail(username);
 		
-		return userInformationDetails.map(UserInfoDetailsDto::new).orElseThrow(() -> new EmailNotFoundException("Email " + username + " not found!"));
+		return userInformationDetails.map(UserInfoDetailsBean::new).orElseThrow(() -> new EmailNotFoundException("Email " + username + " not found!"));
 	}
 }

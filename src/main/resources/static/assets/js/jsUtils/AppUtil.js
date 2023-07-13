@@ -1,5 +1,4 @@
-//
-var takoyomai = "http://localhost:8080";
+var takoyomai = 'http://localhost:8080';
 var GET = "get";
 var POST = "POST";
 var DELETE = "delete";
@@ -7,7 +6,15 @@ var PUT = "put";
 var dataJSON = "json";
 
 function fieldIsNullOrEmpty(field) {
-    if ($(field).val() == null || $(field).val() == "") {
+    if ($(field).val() === null || $(field).val() === "") {
+        return true
+    } else {
+        return false;
+    }
+}
+
+function isNullOrEmpty(strng) {
+    if (strng === null || strng === "") {
         return true
     } else {
         return false;
@@ -17,7 +24,7 @@ function fieldIsNullOrEmpty(field) {
 function displayError(field, message) {
     $(field).attr('hidden', false)
 
-    if (!fieldIsNullOrEmpty(message)) {
+    if (!isNullOrEmpty(message)) {
         $(field).attr('html', message)
     }
 

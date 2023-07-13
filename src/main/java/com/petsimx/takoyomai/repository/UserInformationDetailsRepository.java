@@ -4,10 +4,10 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.petsimx.takoyomai.model.UserInformationDetails;
+import com.petsimx.takoyomai.model.UserInformationDetail;
 
-public interface UserInformationDetailsRepository extends JpaRepository<UserInformationDetails, Integer> {
+public interface UserInformationDetailsRepository extends JpaRepository<UserInformationDetail, Integer> {
 
-	Optional<UserInformationDetails> findByEmail(String username);
+	Optional<UserInformationDetail> findByEmail(String username);
 
 }

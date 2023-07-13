@@ -5,11 +5,13 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import com.petsimx.takoyomai.service.EmailService;
+
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class EmailServiceImpl {
+public class EmailServiceImpl implements EmailService {
 
 	@Autowired
 	private final JavaMailSender javaMailSender;

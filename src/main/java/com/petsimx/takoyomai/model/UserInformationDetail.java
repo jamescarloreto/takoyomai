@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,7 +15,8 @@ import lombok.NoArgsConstructor;
 @Table ( name = "USER_INFORMATION_DETAILS" )
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserInformationDetails {
+@Builder
+public class UserInformationDetail {
 	
 	@Id
 	@GeneratedValue ( strategy = GenerationType.IDENTITY )

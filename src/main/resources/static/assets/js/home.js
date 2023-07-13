@@ -39,27 +39,30 @@ $(document).ready(function($) {
 
     $("#btnSignUp").on('click', function() {
 
+        var formData = {
+            firstName: $("#firstName").val(),
+            lastName: $("#lastName").val(),
+            address: $("#address").val(),
+            email: $("#signUpEmail").val(),
+            phoneNo: $("#phoneNo").val(),
+            password: $("#password1").val()
+        };
         if (!signUpFieldValidation()) {
             $.ajax({
-                URL: window.location + '/user/create',
-                type: POST,
+                contentType: 'application/json',
+                type: "POST",
                 dataType: dataJSON,
-                data: {
-                    firstName: $("#firstName").val(),
-                    lastName: $("#lastName").val(),
-                    address: $("#address").val(),
-                    email: $("#signUpEmail").val(),
-                    phoneNo: $("#phoneNo").val(),
-                    password: $("#password1").val()
-                },
+                data: JSON.stringify(formData),
                 beforeSend: function() {
                     //alert("");
                 },
-                success: function(e) {
-                    val = e;
+                success: function(data) {
+                    console.log(data)
                 },
                 error: function(jq,status,message) {
-                    alert('A jQuery error has occurred. Status: ' + status + ' - Message: ' + message);
+                    console.log(jq)
+                    console.log(status)
+                    console.log(message)
                 }
             });
         }

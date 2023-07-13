@@ -10,7 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.petsimx.takoyomai.service.impl.UserInformationDetailsService;
+import com.petsimx.takoyomai.service.impl.UserInformationDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
@@ -18,7 +18,7 @@ import com.petsimx.takoyomai.service.impl.UserInformationDetailsService;
 public class SecurityConfig {
 	
 	public UserDetailsService userDetailsService() {
-		return new UserInformationDetailsService();
+		return new UserInformationDetailsServiceImpl();
 	}
 	
 	@Bean
