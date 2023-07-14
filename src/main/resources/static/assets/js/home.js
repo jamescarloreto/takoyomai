@@ -51,14 +51,13 @@ $(document).ready(function() {
             $.ajax({
                 url: takoyomai + '/user/create',
                 contentType: 'application/json',
-                type: "POST",
+                type: POST,
                 dataType: dataJSON,
                 data: JSON.stringify({
                     fromAdmin: false,
                     userInformationDetail: formData
                 }),
                 beforeSend: function() {
-                    //alert("");
                     $("#signUpLoading").attr('hidden', false)
                 },
                 success: function(data) {
@@ -76,6 +75,39 @@ $(document).ready(function() {
             });
         }
     });
+
+    $("#btnSignIn").on('click', function() {
+        $.ajax({
+            url: takoyomai + '/login?username=' + $("#username").val() + '&password=' + $("#password").val(),
+            contentType: 'application/json',
+            type: POST,
+            beforeSend: function() {
+                
+                $("#signInLoading").attr('hidden', false)
+            },
+            success: function(data) {
+                signInClearField();
+            },
+            error: function(jq,status,message) {
+                if (jq.status == 406) {
+                    displayMessage("#sign-in-message", "Email or Password not matched!", 5000, false);
+                }
+            },
+            complete: function() {
+                $("#signInLoading").attr('hidden', true)
+            }
+        });
+    });
+
+    $("#ddSignOut").on('click', function() {
+        $.ajax({
+            url: takoyomai + '/logout',
+            type: GET,
+            success: function(data) {
+                console.log(data.success)
+            }
+        });
+    })
 
     $("#btnSignInModal").on('click', function() {
         $("#signInModal").modal('show');
@@ -99,6 +131,13 @@ $(document).ready(function() {
         $("#phoneNo").val("");
         $("#password1").val("");
         $("#password2").val("");
+    }
+
+    function signInClearField() {
+
+        $("#signInModal").modal('hide');
+        $("#signInUsername").val("");
+        $("#signInPw").val("");
     }
 
     function signUpFieldValidation() {

@@ -17,4 +17,6 @@ public class UserInfoDetailsDto {
 	
 	private UserInformationDetail userInformationDetail = new UserInformationDetail();
 	private Boolean fromAdmin;
+	private String username;
+	private String password;
 }

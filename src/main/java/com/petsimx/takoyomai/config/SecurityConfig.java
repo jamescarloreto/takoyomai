@@ -2,6 +2,8 @@ package com.petsimx.takoyomai.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -11,29 +13,39 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import com.petsimx.takoyomai.service.impl.UserInformationDetailsServiceImpl;
+import com.petsimx.takoyomai.service.impl.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
 public class SecurityConfig {
 	
+	@Bean
 	public UserDetailsService userDetailsService() {
-		return new UserInformationDetailsServiceImpl();
+		return new UserDetailsServiceImpl();
 	}
 	
 	@Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.csrf(t -> t.disable())
+        return 
+        		http.csrf(t -> t.disable())
         		.authorizeHttpRequests(r -> r
 				.requestMatchers("/user/create").permitAll()
-        		.requestMatchers("/static/**", "/assets/**").permitAll()
+        		.requestMatchers("/static/**", "/assets/**", "/resources/**").permitAll()
 				.requestMatchers("/**").authenticated())
         		.sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .httpBasic(Customizer.withDefaults())
-                .formLogin(t -> t.loginPage("/").permitAll())
-                .build();
+                .formLogin(t -> t
+                		.loginPage("/").permitAll()
+		                .loginProcessingUrl("/login")
+		                .usernameParameter("username")
+		                .passwordParameter("password"))
+		                .logout(l -> l
+		                		. logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+		                		.logoutSuccessUrl("/"))
+                .build(); 
         		
 //        		http.cors(t -> t.disable())
 //        		.authorizeHttpRequests(t -> t
@@ -101,5 +113,13 @@ public class SecurityConfig {
 	@Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+	
+	@Bean
+    public AuthenticationProvider authenticationProvider(){
+        DaoAuthenticationProvider authenticationProvider=new DaoAuthenticationProvider();
+        authenticationProvider.setUserDetailsService(userDetailsService());
+        authenticationProvider.setPasswordEncoder(passwordEncoder());
+        return authenticationProvider;
     }
 }
