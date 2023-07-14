@@ -23,6 +23,7 @@
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/icons/ionicons.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
@@ -53,7 +54,7 @@
 
       <div class="btn-login-signup-group">
         <div class="input-group">
-          <a class="btn-red-button" href="#btn-log-in">Log in</a>
+          <a class="btn-red-button" type="button" id="btnSignInModal">Log in</a>
           <a class="btn-red-button" href="#btn-sign-up">Sign up</a>                
         </div>
       </div>
@@ -644,6 +645,9 @@
           <div class="col-lg-8 d-flex align-items-center reservation-form-bg">
             <form role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
               <div class="row gy-4">
+                <div class="col-lg-12 col-md-6">
+                  <div id="sign-up-message" class="text-center" hidden></div>
+                </div>
                 <div class="col-lg-6 col-md-6">
                   <input type="text" name="firstName" class="form-control" id="firstName" placeholder="First Name" data-rule="minlen:1" data-msg="Please enter any">
                   <span id="firstNameValidate" class="validate" style="color: red;" hidden></span>
@@ -675,18 +679,69 @@
                 </div>
               </div>
               <div class="mb-3">
-                <div id="signUpLoading" class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your order request was sent. We will call back or send an Email to confirm your reservation. Thank you!</div>
+                <div id="errorSignUp" class="error-message"></div>
+                <div class="sent-message">Your booking request was sent. We will call back or send an Email to confirm your reservation. Thank you!</div>
               </div>
-              <div class="text-center"><button type="button" class="btn-red-button" id="btnSignUp">Sign Up!</button></div>
+              <div class="text-center">
+                <button type="button" class="btn-red-button" id="btnSignUp">
+                  <span id="signUpLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" hidden></span>
+                  Sign Up!
+                </button>
+              </div>
             </form>
           </div><!-- End Reservation Form -->
-
         </div>
-
       </div>
     </section><!-- End Book A Table Section -->
+
+    <!-- Modal -->
+    <div class="sign-in-form modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button id="btnSignInClose" type="button" class="close d-flex align-items-center justify-content-center" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true" class="ion-ios-close"></span>
+            </button>
+          </div>
+          <div class="modal-body p-4 p-md-5">
+            <div class="icon d-flex align-items-center justify-content-center">
+              <span class="ion-ios-person"></span>
+            </div>
+            <h3 class="text-center mb-4">Sign In</h3>
+            <form class="login-form">
+              <div class="row gy-4">
+                <div class="col-lg-12 col-md-6">
+                  <input type="email" name="email" class="form-control" id="signInEmail" placeholder="Email Address" data-rule="minlen:4" data-msg="Please enter valid email address "> 
+                </div>
+                <div class="col-lg-12 col-md-6">
+                  <input type="password" class="form-control" name="signInPw" id="signInPw" placeholder="Password" data-rule="minlen:1" data-msg="Please enter at least 1 chars">
+                </div>
+                <div class="text-center">
+                  <button type="button" class="btn-red-button" id="btnSignIn">
+                    Sign In
+                  </button>
+                </div>
+              <div class="form-group d-md-flex">
+                <div class="form-check w-50">
+                  <label class="custom-control fill-checkbox">
+                    <input type="checkbox" class="fill-control-input">
+                    <span class="fill-control-indicator"></span>
+                    <span class="fill-control-description">Remember Me</span>
+                  </label>
+                </div>
+                <div class="w-50 text-md-right">
+                  <a href="#">Forgot Password</a>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer justify-content-center">
+            <p>Not a member? <a id="linkSignInClose" href="#btn-sign-up">Create an account</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal End -->
 
     <!-- ======= Gallery Section ======= -->
     <section id="gallery" class="gallery section-bg">
@@ -872,7 +927,8 @@
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/jquery/jquery-3.7.0.js"></script>
+  <script src="assets/vendor/jquery-3.7.0/jquery-3.7.0.js"></script>
+  <script src="assets/vendor/jquery-3.7.0/jquery-3.7.0.min.js"></script>
 
   <!-- AppUtil -->
   <script src="assets/js/jsUtils/AppUtil.js"></script>

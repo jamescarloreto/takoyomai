@@ -21,16 +21,26 @@ function isNullOrEmpty(strng) {
     }
 }
 
-function displayError(field, message) {
+function displayMessage(field, message, duration, isSuccess) {
     $(field).attr('hidden', false)
 
     if (!isNullOrEmpty(message)) {
-        $(field).attr('html', message)
+        $(field).text(message)
+    }
+
+    if (isSuccess) {
+        $(field).css('color', 'green');
+    } else {
+        $(field).css('color', 'red');
+    }
+
+    if (isNullOrEmpty(duration)) {
+        duration = 2500;
     }
 
     setTimeout(function() { 
-        $(field).fadeOut(); 
-    }, 2500);
+        $(field).attr('hidden', true)
+    }, duration);
 }
 
 function isEmptyFieldDisplayErrorMsg(field, errorField, message) {
