@@ -1,4 +1,4 @@
-$(document).ready(function($) {
+$(document).ready(function() {
 	
     var confirmedPassword = false;
 	$("#btnEye").on('mousedown', function() {
@@ -16,7 +16,7 @@ $(document).ready(function($) {
     $("#password1").on('blur', function() {
         if (!fieldIsNullOrEmpty(this) && !fieldIsNullOrEmpty("#password2")) {
             if ($("#password1").val() != $("#password2").val()) {
-                displayError("#passValidate", null);
+                displayMessage("#passValidate", null);
 
                 confirmedPassword = false;
             } else {
@@ -28,7 +28,7 @@ $(document).ready(function($) {
     $("#password2").on('blur', function() {
         if (!fieldIsNullOrEmpty(this) && !fieldIsNullOrEmpty("#password1")) {
             if ($("#password1").val() != $("#password2").val()) {
-                displayError("#passValidate", null);
+                displayMessage("#passValidate", null);
 
                 confirmedPassword = false;
             } else {
@@ -49,24 +49,96 @@ $(document).ready(function($) {
         };
         if (!signUpFieldValidation()) {
             $.ajax({
+                url: takoyomai + '/user/create',
                 contentType: 'application/json',
-                type: "POST",
+                type: POST,
                 dataType: dataJSON,
-                data: JSON.stringify(formData),
+                data: JSON.stringify({
+                    fromAdmin: false,
+                    userInformationDetail: formData
+                }),
                 beforeSend: function() {
-                    //alert("");
+                    $("#signUpLoading").attr('hidden', false)
                 },
                 success: function(data) {
-                    console.log(data)
+                    displayMessage("#sign-up-message", "Registered Successfully!", 5000, true);
+                    signUpClearField();
                 },
                 error: function(jq,status,message) {
-                    console.log(jq)
-                    console.log(status)
-                    console.log(message)
+                    if (jq.status == 403) {
+                        displayMessage("#sign-up-message", "Email already exist!", 5000, false);
+                    }
+                },
+                complete: function() {
+                    $("#signUpLoading").attr('hidden', true)
                 }
             });
         }
     });
+
+    $("#btnSignIn").on('click', function() {
+        $.ajax({
+            url: takoyomai + '/login?username=' + $("#username").val() + '&password=' + $("#password").val(),
+            contentType: 'application/json',
+            type: POST,
+            beforeSend: function() {
+                
+                $("#signInLoading").attr('hidden', false)
+            },
+            success: function(data) {
+                signInClearField();
+            },
+            error: function(jq,status,message) {
+                if (jq.status == 406) {
+                    displayMessage("#sign-in-message", "Email or Password not matched!", 5000, false);
+                }
+            },
+            complete: function() {
+                $("#signInLoading").attr('hidden', true)
+            }
+        });
+    });
+
+    $("#ddSignOut").on('click', function() {
+        $.ajax({
+            url: takoyomai + '/logout',
+            type: GET,
+            success: function(data) {
+                console.log(data.success)
+            }
+        });
+    })
+
+    $("#btnSignInModal").on('click', function() {
+        $("#signInModal").modal('show');
+    });
+    
+    $("#btnSignInClose").on('click', function() {
+        $("#signInModal").modal('hide');
+    });
+
+    $("#linkSignInClose").on('click', function() {
+        $("#signInModal").modal('hide');
+    });
+
+    function signUpClearField() {
+
+        confirmedPassword = false;
+        $("#firstName").val("");
+        $("#lastName").val("");
+        $("#address").val("");
+        $("#signUpEmail").val("");
+        $("#phoneNo").val("");
+        $("#password1").val("");
+        $("#password2").val("");
+    }
+
+    function signInClearField() {
+
+        $("#signInModal").modal('hide');
+        $("#signInUsername").val("");
+        $("#signInPw").val("");
+    }
 
     function signUpFieldValidation() {
         var checkedAll = false;

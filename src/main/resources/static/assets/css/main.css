@@ -1,15 +1,3 @@
-/**
-* Template Name: Yummy
-* Updated: May 30 2023 with Bootstrap v5.3.0
-* Template URL: https://bootstrapmade.com/yummy-bootstrap-restaurant-website-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
-/*--------------------------------------------------------------
-# Set main reusable colors and fonts using CSS variables
-# Learn more about CSS variables at https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties
---------------------------------------------------------------*/
 /* Fonts */
 :root {
   --font-default: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -288,10 +276,12 @@ section {
   padding: 8px 20px;
   border-radius: 50px;
   transition: 0.3s;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .header .btn-login-sign-up-group {
-  margin-left: 30px;
+  /* margin-left: 30px; */
 }
 
 .header .btn-red-button:hover,
@@ -302,6 +292,25 @@ section {
 
 section {
   scroll-margin-top: 90px;
+}
+
+.header .icon {
+  width: 50px;
+  height: 50px;
+  border: 1px solid rgba(206, 18, 18, 0.8);
+  border-radius: 50%;
+  font-size: 30px;
+  margin-top: auto;
+  margin-bottom: auto; 
+}
+.header .icon span {
+  color: rgba(206, 18, 18, 0.8);
+}
+.header .dropdown {
+  cursor: pointer;
+}
+.header .dropdown-divider {
+  color: rgba(206, 18, 18, 0.8);
 }
 
 /*--------------------------------------------------------------
@@ -1289,6 +1298,34 @@ section {
   background: #ec2727;
 }
 
+.sign-in-form .btn-red-button {
+  background: var(--color-primary);
+  border: 0;
+  padding: 14px 60px;
+  color: #fff;
+  transition: 0.4s;
+  border-radius: 50px;
+}
+
+.sign-in-form .btn-red-button:hover {
+  background: #ec2727;
+}
+
+.sign-in-form input {
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 14px;
+  border-radius: 0;
+}
+
+.sign-in-form input:focus {
+  border-color: var(--color-primary);
+}
+
+.sign-in-form input {
+  padding: 12px 15px;
+}
+
 @keyframes animate-loading {
   0% {
     transform: rotate(0deg);
@@ -1882,14 +1919,14 @@ section {
 .modal-content .modal-body .icon {
   width: 80px;
   height: 80px;
-  border: 1px solid #fb8691;
+  border: 1px solid rgba(206, 18, 18, 0.8);
   border-radius: 50%;
   font-size: 30px;
   margin: 0 auto;
   margin-bottom: 10px; 
 }
 .modal-content .modal-body .icon span {
-  color: #fb8691; 
+  color: rgba(206, 18, 18, 0.8);
 }
 .modal-content .modal-footer {
   border: none;
