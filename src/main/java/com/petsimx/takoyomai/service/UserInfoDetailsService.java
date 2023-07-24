@@ -10,4 +10,6 @@ public interface UserInfoDetailsService {
 	UserInformationDetail addUserDetails(UserInfoDetailsDto userInfoDetailDto);
 
 	UserDetails findByEmail(String username);
+
+	UserInfoDetailsDto getUserDetails();
 }

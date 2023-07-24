@@ -46,22 +46,22 @@ public class UserInfoDetailsController {
 		}
 	}
 	
-	@GetMapping( "/login" )
-	public ResponseEntity<AjaxResponse<Object>> loginUser(@RequestBody UserInfoDetailsDto userInfoDetailDto) {
-		
-		logger.info("createUser | userInfoDetailDto :: " + userInfoDetailDto);
-		
-		try {
-			UserInformationDetail userInfoDetail = userInfoDetailsService.addUserDetails(userInfoDetailDto);
-			AjaxResponse<Object> ajaxResponse = new AjaxResponse<Object>("success", userInfoDetail);
-			
-			return new ResponseEntity<AjaxResponse<Object>>(ajaxResponse, HttpStatus.OK);
-		} catch (EmailOrPasswordNotMatchException e) {
-			logger.error("Error:: " + e.getMessage());
-			
-			AjaxResponse<Object> ajaxErrorResponse = new AjaxResponse<Object>();
-
-			return new ResponseEntity<AjaxResponse<Object>>(ajaxErrorResponse, HttpStatus.NOT_ACCEPTABLE);
-		}
-	}
+//	@GetMapping( "/login" )
+//	public ResponseEntity<AjaxResponse<Object>> loginUser(@RequestBody UserInfoDetailsDto userInfoDetailDto) {
+//		
+//		logger.info("createUser | userInfoDetailDto :: " + userInfoDetailDto);
+//		
+//		try {
+//			UserInformationDetail userInfoDetail = userInfoDetailsService.addUserDetails(userInfoDetailDto);
+//			AjaxResponse<Object> ajaxResponse = new AjaxResponse<Object>("success", userInfoDetail);
+//			
+//			return new ResponseEntity<AjaxResponse<Object>>(ajaxResponse, HttpStatus.OK);
+//		} catch (EmailOrPasswordNotMatchException e) {
+//			logger.error("Error:: " + e.getMessage());
+//			
+//			AjaxResponse<Object> ajaxErrorResponse = new AjaxResponse<Object>();
+//
+//			return new ResponseEntity<AjaxResponse<Object>>(ajaxErrorResponse, HttpStatus.NOT_ACCEPTABLE);
+//		}
+//	}
 }

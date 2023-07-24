@@ -5,6 +5,8 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -31,18 +33,20 @@ public class UserInfoDetailsServiceImpl implements UserInfoDetailsService {
 	
 	@Autowired
 	private EmailService emailService;
-
+	
 	@Override
 	public UserInformationDetail addUserDetails(UserInfoDetailsDto userInfoDetailDto) {
 		logger.info("addUserDetails | userInfoDetailDto :: " + userInfoDetailDto);
 		
 		UserInformationDetail userInformationDetail = userInfoDetailDto.getUserInformationDetail();
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	    String username = authentication.getName();
 		
 		if (userInformationDetailsRepository.findByEmail(userInformationDetail.getEmail()).isPresent()) {
 			throw new EmailExistingException("Email existing!");
 		}
 			
-		if (userInfoDetailDto.getFromAdmin()) {
+		if (!username.isEmpty()) {
 			userInformationDetail.setRole("ROLE_USER");
 		} else {
 			userInformationDetail.setRole("ROLE_CUSTOMER");
@@ -50,7 +54,7 @@ public class UserInfoDetailsServiceImpl implements UserInfoDetailsService {
 		
 		userInformationDetail.setPassword(passwordEncoder.encode(userInfoDetailDto.getUserInformationDetail().getPassword()));
 		
-		if (!userInfoDetailDto.getFromAdmin())
+		if (!username.isEmpty())
 			sendEmailUser(userInfoDetailDto.getUserInformationDetail().getEmail());
 		
 		return userInformationDetailsRepository.save(userInformationDetail);
@@ -72,4 +76,31 @@ public class UserInfoDetailsServiceImpl implements UserInfoDetailsService {
 		
 		return userInformationDetails.map(UserInfoDetailsBean::new).orElseThrow(() -> new EmailNotFoundException("Email " + username + " not found!"));
 	}
+
+	@SuppressWarnings("finally")
+	@Override
+	public UserInfoDetailsDto getUserDetails() {
+		logger.info("UserInfoDetailsServiceImpl | getUserDetails | START");
+		try {
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		    String username = authentication.getName();
+		    
+		    logger.info("UserInfoDetailsServiceImpl | getUserDetails | username :: " + username);
+		    
+		    UserInformationDetail userInformationDetail = userInformationDetailsRepository.findByEmail(username).orElseThrow(() -> new EmailNotFoundException("Email :: " + username + "  not found..."));
+			
+		    return UserInfoDetailsDto.builder()
+		    		.firstName(userInformationDetail.getFirstName())
+		    		.lastName(userInformationDetail.getLastName())
+		    		.username(userInformationDetail.getEmail())
+		    		.build();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		} finally {
+			logger.info("UserInfoDetailsServiceImpl | getUserDetails | END");
+		}
+		return null;
+	}
+	
+	
 }

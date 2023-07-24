@@ -15,8 +15,10 @@ import lombok.ToString;
 @ToString
 public class UserInfoDetailsDto {
 	
-	private UserInformationDetail userInformationDetail = new UserInformationDetail();
-	private Boolean fromAdmin;
-	private String username;
-	private String password;
+	public UserInformationDetail userInformationDetail = new UserInformationDetail();
+	public Boolean fromAdmin;
+	public String username;
+	public String password;
+	public String firstName;
+	public String lastName;
 }

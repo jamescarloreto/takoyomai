@@ -4,28 +4,27 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.Lob;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @Entity
-@Builder
+@Table( name = "FILE_DATA" )
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Menu {
-	
+@Builder
+public class FileData {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
 	private String name;
-	private String description;
-	private double price;
 	private String type;
 	
-	@OneToOne
-	private FileData file;
+	@Lob
+	private byte[] fileByte;
 }

@@ -1,9 +1,10 @@
 var takoyomai = 'http://localhost:8080';
-var GET = "get";
+var GET = "GET";
 var POST = "POST";
 var DELETE = "delete";
 var PUT = "put";
 var dataJSON = "json";
+var loggedIn = false;
 
 function fieldIsNullOrEmpty(field) {
     if ($(field).val() === null || $(field).val() === "") {
@@ -51,4 +52,23 @@ function isEmptyFieldDisplayErrorMsg(field, errorField, message) {
     } else {
         return false;
     }
+}
+
+function getUserDetails() {
+    $.ajax({
+        url: takoyomai + '/userevent/getUserDetails',
+        type: GET,
+        success: function(data) {
+            console.log(data)
+            if (data.status === "success") {
+                isLoggedIn(data)
+                console.log("getUserDetails");
+            }
+        }
+    });
+}
+
+function isLoggedIn(data) {
+     
+    $("#profileName").text(data.object.firstName + " " + data.object.lastName); 
 }

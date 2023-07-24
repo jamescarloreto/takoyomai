@@ -54,7 +54,6 @@ $(document).ready(function() {
                 type: POST,
                 dataType: dataJSON,
                 data: JSON.stringify({
-                    fromAdmin: false,
                     userInformationDetail: formData
                 }),
                 beforeSend: function() {
@@ -87,6 +86,8 @@ $(document).ready(function() {
             },
             success: function(data) {
                 signInClearField();
+                getUserDetails();
+                retrieveMenuForUsers();
             },
             error: function(jq,status,message) {
                 if (jq.status == 406) {
@@ -95,6 +96,7 @@ $(document).ready(function() {
             },
             complete: function() {
                 $("#signInLoading").attr('hidden', true)
+                window.location.reload(true);
             }
         });
     });
@@ -104,22 +106,81 @@ $(document).ready(function() {
             url: takoyomai + '/logout',
             type: GET,
             success: function(data) {
-                console.log(data.success)
+                window.location.reload(true);
             }
         });
-    })
+    });
+
+    $("#tableMenu tbody").on('click', 'button#btnCreateMenu', function() {
+        var formData = {
+            file: $("#fileData")[0],
+            menu: {
+                name: $("#menuName").val(),
+                description: $("#menuDesc").val(),
+                price: $("#menuPrice").val(),
+                type: $("#dropdownMenuButton").text()
+            }
+        }
+        
+        $.ajax({
+            url: takoyomai + '/menu/create',
+            type: POST,
+            contentType: 'multipart/form-data',
+            dataType: dataJSON,
+            data: JSON.stringify(formData),
+            beforeSend: function() {
+                //$("#signUpLoading").attr('hidden', false)
+            },
+            success: function() {
+
+            }
+        });
+     });
+
+    $("#tableMenu tbody").on('click', 'button#btnShowFieldMenu', function() {
+    var index = $(this).index();
+
+        hideFields(false);
+    });
+
+    $("#tableMenu tbody").on('click', 'button#btnCloseCreateMenu', function() {
+    var index = $(this).index();
+
+        hideFields(true);
+    });
 
     $("#btnSignInModal").on('click', function() {
-        $("#signInModal").modal('show');
+        $("#signInModal").modal('toggle');
     });
     
     $("#btnSignInClose").on('click', function() {
-        $("#signInModal").modal('hide');
+        $("#signInModal").modal('toggle');
     });
 
     $("#linkSignInClose").on('click', function() {
-        $("#signInModal").modal('hide');
+        $("#signInModal").modal('toggle');
     });
+    
+    $("#btnProfileModal").on('click', function() {
+        $("#profileModal").modal('toggle');
+    });
+
+    $("#btnProfileClose").on('click', function() {
+        $("#profileModal").modal('toggle');
+    });
+
+    function hideFields(isHide) {
+        $("#columnDish input").attr('hidden', isHide);
+        $("#columnPrice input").attr('hidden', isHide);
+        $("#columnDesc input").attr('hidden', isHide);
+        $("#columnName input").attr('hidden', isHide);
+        $("#columnPicture input").attr('hidden', isHide);
+        $("#columnDish div").attr('hidden', isHide);
+        $("#columnButton div").attr('hidden', isHide);
+        // $("#columnButton button#btnCloseCreateMenu").attr('hidden', isHide);
+        $("#btnShowFieldMenu").attr('hidden', !isHide)
+        
+    }
 
     function signUpClearField() {
 

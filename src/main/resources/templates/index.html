@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
 <head>
   <meta charset="utf-8">
@@ -55,23 +55,23 @@
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
     </div>
     <div class="container d-flex align-items-center justify-content-end">
-      <div class="btn-login-signup-group position-absolute top-50 start-80">
+      <div id="displayButton" class="btn-login-signup-group position-absolute top-50 start-80" sec:authorize="isAnonymous()">
         <div class="input-group translate-middle">
           <a class="btn-red-button" type="button" id="btnSignInModal">Log in</a>
           <a class="btn-red-button" href="#btn-sign-up">Sign up</a>                
         </div>
       </div>
-      <div class="dropdown text-end" sec:authorize="hasRole('ROLE_CUSTOMER')">
-          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle show" id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="true">
-            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
-          </a>
-          <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 34px);" data-popper-placement="bottom-start">
-            <li><a class="dropdown-item"><span sec:authentication="name"></span></a></li>
-            <li><a class="dropdown-item">Profile</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" id="ddSignOut">Sign out</a></li>
-          </ul>
-        </div>
+      <div id="displayPicture" class="dropdown text-end" sec:authorize="isAuthenticated()">
+        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle show" id="dropdownUser" data-bs-toggle="dropdown" aria-expanded="true">
+          <img src="https://github.com/mdo.png" alt="mdo" width="60" height="60" class="rounded-circle">
+        </a>
+        <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 34px);" data-popper-placement="bottom-start">
+          <li><a id="btnProfileModal" class="dropdown-item" data-toggle="modal" data-target="#profileModal">Profile</a></li>
+          <li><a class="dropdown-item" sec:authorize="hasRole('CUSTOMER')">Orders</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" id="ddSignOut">Sign out</a></li>
+        </ul>
+      </div>
     </div>
   </header><!-- End Header -->
 
@@ -219,10 +219,156 @@
     </section><!-- End Stats Counter Section -->
 
     <!-- ======= Menu Section ======= -->
-    <section id="menu" class="menu">
-      <div class="container" data-aos="fade-up">
+    <section id="menu" class="menu" >
+
+      <div class="container" data-aos="fade-up" sec:authorize="hasAnyRole('USER', 'ADMIN')">
 
         <div class="section-header">
+          <h2>Menu List</h2>
+          <p>Menu <span>for </span>today</p>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="table-wrap">
+              <table class="table" id="tableMenu">
+                <thead class="thead-primary">
+                  <tr>
+                    <th>&nbsp;</th>
+                    <th>&nbsp;</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Type</th>
+                    <th>&nbsp;</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- For Customer Role -->
+      <div class="container" data-aos="fade-up" sec:authorize="hasRole('CUSTOMER')">
+
+        <div class="section-header">
+          <h2>Our Menu</h2>
+          <p>Check Our <span>Takoyomai Menu</span></p>
+        </div>
+
+        <ul class="nav nav-tabs d-flex justify-content-center" data-aos="fade-up" data-aos-delay="200">
+
+          <li class="nav-item">
+            <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#menu-takoyaki">
+              <h4>Takoyaki</h4>
+            </a>
+          </li><!-- End tab nav item -->
+
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-sidedish">
+              <h4>Side Dish</h4>
+            </a><!-- End tab nav item -->
+
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-beverage">
+              <h4>Beverage</h4>
+            </a>
+          </li><!-- End tab nav item -->
+
+        </ul>
+
+        <div class="tab-content" data-aos="fade-up" data-aos-delay="300">
+          <div class="tab-pane fade active show" id="menu-takoyaki">
+            <div class="tab-header text-center">
+              <p>Menu</p>
+              <h3>Main</h3>
+            </div>
+            <div class="row gy-5">
+              <div class="col-lg-4 menu-item">
+                <a href="assets/img/TAKOYAKI/Original.png" class="glightbox"><img src="assets/img/TAKOYAKI/Original.png" class="menu-img img-fluid" alt=""></a>
+                <h4>TAKOYAKI</h4>
+                <p class="ingredients">
+                  Filled with octobits. Topped with takoyaki sauce, japanese mayo, aonori (seaweed flakes) , togarashi (chili powder) and bonito flakes.
+                </p>
+                <p class="price">
+                  ₱89.00
+                </p>
+              </div><!-- Menu Item -->
+            </div>
+          </div><!-- End Starter Menu Content -->
+
+          <div class="tab-pane fade" id="menu-sidedish">
+
+            <div class="tab-header text-center">
+              <p>Menu</p>
+              <h3>Side dish</h3>
+            </div>
+
+            <div class="row gy-5">
+              <div class="col-lg-4 menu-item">
+                <a href="assets/img/menu/garlic.jpg" class="glightbox"><img src="assets/img/menu/garlic.jpg" class="menu-img img-fluid" alt=""></a>
+                <h4>Garlic Mashed Potatoes</h4>
+                <p class="ingredients">
+                  Garlic mashed potatoes are a popular side dish that pairs well with a variety of main courses. The garlic adds depth and richness to the creamy mashed potatoes, creating a savory and satisfying taste.
+                </p>
+                <p class="price">
+                  ₱100.00
+                </p>
+              </div><!-- Menu Item -->
+            </div>
+          </div><!-- End Breakfast Menu Content -->
+
+          <div class="tab-pane fade" id="menu-beverage">
+            <div class="tab-header text-center">
+              <p>Menu</p>
+              <h3>Drinks</h3>
+            </div>
+            <div class="row gy-5">
+              <div class="col-lg-4 menu-item">
+                <a href="assets/img/drinks/BANANA MILK COFFEE.webp" class="glightbox"><img src="assets/img/drinks/BANANA MILK COFFEE.webp" class="menu-img img-fluid" alt=""></a>
+                <h4>Banana Milk Coffee</h4>
+                <p class="ingredients">
+                  Adding creamy smooth banana milk to your morning cold brew makes it taste rich and delicious. Talk about an eye-opening good-for-you breakfast in a cup!
+                </p> 
+                <p class="price">
+                  ₱89.00
+                </p>
+              </div><!-- Menu Item -->
+            </div>
+          </div><!-- End Lunch Menu Content -->
+
+          <div class="tab-pane fade" id="menu-dinner">
+
+            <div class="tab-header text-center">
+              <p>Menu</p>
+              <h3>Dinner</h3>
+            </div>
+
+            <div class="row gy-5">
+              <div class="col-lg-4 menu-item">
+                <a href="assets/img/menu/menu-item-1.png" class="glightbox"><img src="assets/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
+                <h4>Magnam Tiste</h4>
+                <p class="ingredients">
+                  Lorem, deren, trataro, filede, nerada
+                </p>
+                <p class="price">
+                  $5.95
+                </p>
+              </div><!-- Menu Item -->
+            </div>
+          </div><!-- End Dinner Menu Content -->
+
+        </div>
+
+      </div>
+
+      <!-- isAnonymous -->
+      <div class="container" data-aos="fade-up" sec:authorize="isAnonymous()">
+
+        <div class="section-header" >
           <h2>Our Menu</h2>
           <p>Check Our <span>Takoyomai Menu</span></p>
         </div>
@@ -641,7 +787,7 @@
     </section><!-- End Chefs Section -->
 
     <!-- ======= Book A Table Section ======= -->
-    <section id="btn-sign-up" class="sign-up-form">
+    <section id="btn-sign-up" class="sign-up-form" sec:authorize="{hasRole('ADMIN') or isAnonymous()}">
       <div class="container" data-aos="fade-up">
 
         <div class="section-header">
@@ -815,61 +961,98 @@
 
       </div>
     </section><!-- End Contact Section -->
-
-    <!-- Modal -->
-    <div class="sign-in-form modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button id="btnSignInClose" type="button" class="close d-flex align-items-center justify-content-center" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true" class="ion-ios-close"></span>
-            </button>
-          </div>
-          <div class="modal-body p-4 p-md-5">
-            <div class="icon d-flex align-items-center justify-content-center">
-              <span class="ion-ios-person"></span>
+    <section>
+      <!-- Sign in Modal -->
+      <div class="sign-in-form modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button id="btnSignInClose" type="button" class="close d-flex align-items-center justify-content-center" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" class="ion-ios-close"></span>
+              </button>
             </div>
-            <h3 class="text-center mb-4">Sign In</h3>
-            <form class="login-form">
-              <div class="row gy-4">
-                <div class="col-lg-12 col-md-6">
-                  <div id="sign-in-message" class="text-center" hidden></div>
-                </div>
-                <div class="col-lg-12 col-md-6">
-                  <input type="email" name="email" class="form-control" id="username" placeholder="Email Address" data-rule="minlen:4" data-msg="Please enter valid email address "> 
-                </div>
-                <div class="col-lg-12 col-md-6">
-                  <input type="password" class="form-control" name="signInPw" id="password" placeholder="Password" data-rule="minlen:1" data-msg="Please enter at least 1 chars">
-                </div>
-                <div class="text-center">
-                  <button type="button" class="btn-red-button" id="btnSignIn">
-                    <span id="signInLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" hidden></span>
-                    Sign In
-                  </button>
-                </div>
-              <div class="form-group d-md-flex">
-                <div class="form-check w-50">
-                  <label class="custom-control fill-checkbox">
-                    <input type="checkbox" class="fill-control-input">
-                    <span class="fill-control-indicator"></span>
-                    <span class="fill-control-description">Remember Me</span>
-                  </label>
-                </div>
-                <div class="w-50 text-md-right">
-                  <a href="#">Forgot Password</a>
-                </div>
+            <div class="modal-body p-4 p-md-5">
+              <div class="icon d-flex align-items-center justify-content-center">
+                <span class="ion-ios-person"></span>
               </div>
-            </form>
-          </div>
-          <div class="modal-footer justify-content-center">
-            <p>Not a member? <a id="linkSignInClose" href="#btn-sign-up">Create an account</a></p>
+              <h3 class="text-center mb-4">Sign In</h3>
+              <form class="login-form">
+                <div class="row gy-4">
+                  <div class="col-lg-12 col-md-6">
+                    <div id="sign-in-message" class="text-center" hidden></div>
+                  </div>
+                  <div class="col-lg-12 col-md-6">
+                    <input type="email" name="email" class="form-control" id="username" placeholder="Email Address" data-rule="minlen:4" data-msg="Please enter valid email address "> 
+                  </div>
+                  <div class="col-lg-12 col-md-6">
+                    <input type="password" class="form-control" name="signInPw" id="password" placeholder="Password" data-rule="minlen:1" data-msg="Please enter at least 1 chars">
+                  </div>
+                  <div class="text-center">
+                    <button type="button" class="btn-red-button" id="btnSignIn">
+                      <span id="signInLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" hidden></span>
+                      Sign In
+                    </button>
+                  </div>
+                <div class="form-group d-md-flex">
+                  <div class="form-check w-50">
+                    <label class="custom-control fill-checkbox">
+                      <input type="checkbox" class="fill-control-input">
+                      <span class="fill-control-indicator"></span>
+                      <span class="fill-control-description">Remember Me</span>
+                    </label>
+                  </div>
+                  <div class="w-50 text-md-right">
+                    <a href="#">Forgot Password</a>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer justify-content-center">
+              <p>Not a member? <a id="linkSignInClose" href="#btn-sign-up">Create an account</a></p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <!-- Modal End -->
+      <!-- Sign in Modal End -->
+    </section>
+    <section>
+      <!-- Profile Modal -->
+      <div class="profile-form modal fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button id="btnProfileClose" type="button" class="close d-flex align-items-center justify-content-center" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" class="ion-ios-close"></span>
+              </button>
+            </div>
+            <div class="modal-body p-4 p-md-5">
+              <form class="login-form">
+                <div class="row gy-4">
+                  <div class="col-lg-12 col-md-6">
+                    <div id="sign-in-message" class="text-center" hidden></div>
+                  </div>
+                  <div class="col-lg-12 col-md-6">
+                    <input type="email" name="email" class="form-control" id="username" placeholder="Email Address" data-rule="minlen:4" data-msg="Please enter valid email address "> 
+                  </div>
+                  <div class="col-lg-12 col-md-6">
+                    <input type="password" class="form-control" name="signInPw" id="password" placeholder="Password" data-rule="minlen:1" data-msg="Please enter at least 1 chars">
+                  </div>
+                  <div class="text-center">
+                    <button type="button" class="btn-red-button" id="btnSignIn">
+                      <span id="signInLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" hidden></span>
+                      Sign In
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Profile Modal End -->
+    </section>
   </main><!-- End #main -->
-
+  
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
 
@@ -950,6 +1133,7 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   <script src="assets/js/home.js"></script>
+  <script src="assets/js/menu.js"></script>
 </body>
 
 </html>

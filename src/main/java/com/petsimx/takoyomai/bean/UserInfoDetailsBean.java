@@ -11,6 +11,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.petsimx.takoyomai.model.UserInformationDetail;
 
+import lombok.ToString;
+
+@ToString
 public class UserInfoDetailsBean implements UserDetails {
 	
 	/**
