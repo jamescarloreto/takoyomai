@@ -9,5 +9,9 @@ import com.petsimx.takoyomai.model.Menu;
 public interface MenuService {
 	MenuDto saveMenu(MenuDto menuDto) throws IOException;
 
-	List<Menu> retreiveMenu();
+	MenuDto retreiveMenu(String foodType);
+
+	String addMenuForToday(Long menuId);
+
+	String deleteMenuForToday(Long menuId);
 }

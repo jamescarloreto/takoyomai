@@ -34,7 +34,7 @@ class MenuRepositoryTest {
 				.name("Adobo")
 				.price(51.50)
 				.type("Dish")
-				.fileName("adobo")
+				//.fileName("adobo")
 				.description("Meat")
 				.build();
 	}

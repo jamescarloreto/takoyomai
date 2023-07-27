@@ -1704,7 +1704,7 @@ section {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1050;
+  z-index: 99999;
   display: none;
   width: 100%;
   height: 100%;
@@ -1933,3 +1933,138 @@ section {
   background: #f8f8f8; 
 }
     
+.profile-form .btn-red-button {
+  background: var(--color-primary);
+  border: 0;
+  padding: 14px 60px;
+  color: #fff;
+  transition: 0.4s;
+  border-radius: 50px;
+}
+
+.profile-form .btn-red-button:hover {
+  background: #ec2727;
+}
+
+.profile-form input {
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 14px;
+  border-radius: 0;
+}
+
+.profile-form input:focus {
+  border-color: var(--color-primary);
+}
+
+.profile-form input {
+  padding: 12px 15px;
+}
+
+.table tbody td .close span {
+  font-size: 40px;
+  color: orange; }
+
+.close {
+  float: right;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  opacity: .5; }
+  .close:hover {
+    color: #000;
+    text-decoration: none; }
+  .close:not(:disabled):not(.disabled):hover, .close:not(:disabled):not(.disabled):focus {
+    opacity: 1; }
+
+button.close {
+  padding: 0;
+  background-color: transparent;
+  border: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none; }
+
+.create {
+  float: right;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: green;
+  text-shadow: 0 1px 0 #fff;
+  opacity: .5; }
+  .close:hover {
+    color: #000;
+    text-decoration: none; }
+  .close:not(:disabled):not(.disabled):hover, .close:not(:disabled):not(.disabled):focus {
+    opacity: 1; }
+
+button.create {
+  padding: 0;
+  background-color: transparent;
+  border: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none; }
+
+.table tbody td .create span {
+  font-size: 40px;
+  color: green; }
+
+.create {
+  float: right;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  opacity: .5; }
+  .create:hover {
+    color: #4ed687;
+    text-decoration: none; }
+  .create:not(:disabled):not(.disabled):hover, .create:not(:disabled):not(.disabled):focus {
+    opacity: 1; }
+
+.create {
+  float: right;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: red;
+  text-shadow: 0 1px 0 #fff;
+  opacity: .5; }
+  .close:hover {
+    color: #000;
+    text-decoration: none; }
+  .close:not(:disabled):not(.disabled):hover, .close:not(:disabled):not(.disabled):focus {
+    opacity: 1; }
+
+button.btnClose {
+  padding: 0;
+  background-color: transparent;
+  border: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none; }
+
+.table tbody td .btnClose span {
+  font-size: 40px;
+  color: red; }
+
+.btnClose {
+  float: right;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  opacity: .5; }
+  .btnClose:hover {
+    color: #4ed687;
+    text-decoration: none;
+  }
+  .btnClose:not(:disabled):not(.disabled):hover, .btnClose:not(:disabled):not(.disabled):focus {
+    opacity: 1;
+  }

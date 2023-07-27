@@ -1,7 +1,7 @@
 var takoyomai = 'http://localhost:8080';
 var GET = "GET";
 var POST = "POST";
-var DELETE = "delete";
+var DELETE = "DELETE";
 var PUT = "put";
 var dataJSON = "json";
 var loggedIn = false;
@@ -62,7 +62,7 @@ function getUserDetails() {
             console.log(data)
             if (data.status === "success") {
                 isLoggedIn(data)
-                console.log("getUserDetails");
+                //console.log("getUserDetails");
             }
         }
     });

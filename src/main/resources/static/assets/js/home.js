@@ -1,5 +1,6 @@
 $(document).ready(function() {
 	
+    retrieveMenuForUsers();
     var confirmedPassword = false;
 	$("#btnEye").on('mousedown', function() {
         $("#eyecon").attr('class', 'bi bi-eye');
@@ -88,6 +89,7 @@ $(document).ready(function() {
                 signInClearField();
                 getUserDetails();
                 retrieveMenuForUsers();
+                window.location.reload(true);
             },
             error: function(jq,status,message) {
                 if (jq.status == 406) {
@@ -96,7 +98,6 @@ $(document).ready(function() {
             },
             complete: function() {
                 $("#signInLoading").attr('hidden', true)
-                window.location.reload(true);
             }
         });
     });
@@ -112,22 +113,24 @@ $(document).ready(function() {
     });
 
     $("#tableMenu tbody").on('click', 'button#btnCreateMenu', function() {
-        var formData = {
-            file: $("#fileData")[0],
-            menu: {
-                name: $("#menuName").val(),
-                description: $("#menuDesc").val(),
-                price: $("#menuPrice").val(),
-                type: $("#dropdownMenuButton").text()
-            }
-        }
+
+        var formData = new FormData();
+        formData.append('file', $("#fileData")[0].files[0]);
+        formData.append('name', $("#menuName").val());
+        formData.append('description', $("#menuDesc").val());
+        formData.append('price', $("#menuPrice").val());
+        formData.append('type', $("#dishDropdown").val());
+
+        console.log($("#fileData").val())
+        console.log(formData)
         
         $.ajax({
             url: takoyomai + '/menu/create',
             type: POST,
-            contentType: 'multipart/form-data',
-            dataType: dataJSON,
-            data: JSON.stringify(formData),
+            processData: false,
+            contentType: false,
+            enctype: 'multipart/form-data',
+            data: formData,
             beforeSend: function() {
                 //$("#signUpLoading").attr('hidden', false)
             },
@@ -136,6 +139,37 @@ $(document).ready(function() {
             }
         });
      });
+
+     function retrieveMenuForUsers() {
+        $.ajax({
+            url: takoyomai + '/menu/retrieve',
+            contentType: 'application/json',
+            type: GET,
+            success: function(data) {
+                if (data.status === "success") {
+                    if (data.object != null) {
+                        fillMenusForUsers(data.object.menuDtos);
+                    }
+                }
+            },
+            error: function(jq,status,message) {
+                console.log(message)
+            },
+        });
+    }
+
+    $("#tableMenu tbody").on('change', 'tr', function() {
+        var index = $(this).find('input:checkbox')[0].checked;
+        alert($(this).find('input:checkbox')[0].id)
+        //console.log($(this).find('input:checkbox')[0].checked)
+        $.ajax({
+            url: takoyomai + '/menu/menufortoday/' + $(this).find('input:checkbox')[0].id,
+            contentType: 'application/json',
+            type: ($(this).find('input:checkbox')[0].checked ? POST : DELETE),
+            success: function(data) {
+            }
+        });
+    });
 
     $("#tableMenu tbody").on('click', 'button#btnShowFieldMenu', function() {
     var index = $(this).index();

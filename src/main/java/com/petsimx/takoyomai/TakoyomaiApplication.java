@@ -9,5 +9,4 @@ public class TakoyomaiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TakoyomaiApplication.class, args);
 	}
-
 }

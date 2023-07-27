@@ -228,17 +228,17 @@
           <p>Menu <span>for </span>today</p>
         </div>
         <div class="row">
-          <div class="col-md-12">
+          <div class="container-fluid col-md-12">
             <div class="table-wrap">
               <table class="table" id="tableMenu">
                 <thead class="thead-primary">
                   <tr>
-                    <th>&nbsp;</th>
-                    <th>&nbsp;</th>
-                    <th>Name</th>
-                    <th>Description</th>
+                    <th class="col-sm-1">For Today?</th>
+                    <th class="col-md-2">&nbsp;</th>
+                    <th class="col-md-2">Name</th>
+                    <th class="col-md-4">Description</th>
                     <th>Price</th>
-                    <th>Type</th>
+                    <th class="col-md-1">Type</th>
                     <th>&nbsp;</th>
                   </tr>
                 </thead>
@@ -403,7 +403,7 @@
               <h3>Main</h3>
             </div>
 
-            <div class="row gy-5">
+            <div class="row gy-5" id="anonymousMenu">
               
               <div class="col-lg-4 menu-item">
                 <a href="assets/img/TAKOYAKI/Original.png" class="glightbox"><img src="assets/img/TAKOYAKI/Original.png" class="menu-img img-fluid" alt=""></a>
@@ -862,14 +862,14 @@
 
         <div class="gallery-slider swiper">
           <div class="swiper-wrapper align-items-center">
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/IMG_6674.JPG"><img src="assets/img/gallery/IMG_6674.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/IMG_6681.JPG"><img src="assets/img/gallery/IMG_6681.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/IMG_6683.JPG"><img src="assets/img/gallery/IMG_6683.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/IMG_6684.JPG"><img src="assets/img/gallery/IMG_6684.JPG" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/IMG_6686.JPG"><img src="assets/img/gallery/IMG_6686.JPG" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/IMG_6680.JPG"><img src="assets/img/gallery/IMG_6680.JPG" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/IMG_6678.JPG"><img src="assets/img/gallery/IMG_6678.JPG" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/IMG_6682.JPG"><img src="assets/img/gallery/IMG_6682.JPG" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-1.jpg"><img src="assets/img/gallery/gallery-1.jpg" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-2.jpg"><img src="assets/img/gallery/gallery-2.jpg" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-3.jpg"><img src="assets/img/gallery/gallery-3.jpg" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-4.jpg"><img src="assets/img/gallery/gallery-4.jpg" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-5.jpg"><img src="assets/img/gallery/gallery-5.jpg" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-6.jpg"><img src="assets/img/gallery/gallery-6.jpg" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-7.jpg"><img src="assets/img/gallery/gallery-7.jpg" class="img-fluid" alt=""></a></div>
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-8.jpg"><img src="assets/img/gallery/gallery-8.jpg" class="img-fluid" alt=""></a></div>
           </div>
           <div class="swiper-pagination"></div>
         </div>
@@ -1131,9 +1131,10 @@
   <script src="assets/js/jsUtils/AppUtil.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
-  <script src="assets/js/home.js"></script>
   <script src="assets/js/menu.js"></script>
+  <script src="assets/js/home.js"></script>
+  <script src="assets/js/main.js"></script>
+  
 </body>
 
 </html>
