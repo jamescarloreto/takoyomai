@@ -1,6 +1,8 @@
 $(document).ready(function() {
 	
+    retrieveTakoyakiMenusForAnonymous();
     retrieveMenuForUsers();
+    
     var confirmedPassword = false;
 	$("#btnEye").on('mousedown', function() {
         $("#eyecon").attr('class', 'bi bi-eye');
@@ -135,12 +137,12 @@ $(document).ready(function() {
                 //$("#signUpLoading").attr('hidden', false)
             },
             success: function() {
-
+                window.location.reload(true);
             }
         });
      });
 
-     function retrieveMenuForUsers() {
+    function retrieveMenuForUsers() {
         $.ajax({
             url: takoyomai + '/menu/retrieve',
             contentType: 'application/json',
@@ -149,6 +151,27 @@ $(document).ready(function() {
                 if (data.status === "success") {
                     if (data.object != null) {
                         fillMenusForUsers(data.object.menuDtos);
+                    }
+                }
+            },
+            error: function(jq,status,message) {
+                console.log(jq)
+                console.log(status)
+                console.log(message)
+            },
+        });
+    }
+
+    function retrieveTakoyakiMenusForAnonymous() {
+        $.ajax({
+            url: takoyomai + '/menu/retrieveType/Takoyaki',
+            contentType: 'application/json',
+            type: GET,
+            success: function(data) {
+                console.log(data)
+                if (data.status === "success") {
+                    if (data.object != null) {
+                        fillTakoyakiMenusForAnonymous(data.object.menuDtos);
                     }
                 }
             },
@@ -167,6 +190,7 @@ $(document).ready(function() {
             contentType: 'application/json',
             type: ($(this).find('input:checkbox')[0].checked ? POST : DELETE),
             success: function(data) {
+                //retrieveMenuForUsers();
             }
         });
     });

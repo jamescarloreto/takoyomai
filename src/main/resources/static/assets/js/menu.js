@@ -167,7 +167,7 @@ function formTableToCreate() {
         .appendTo("tbody tr#rowAdd td#columnDish input#dishDropdown")
 
     $("<option></option>")
-        .val("Tokoyaki")
+        .val("Takoyaki")
         .appendTo("tbody tr#rowAdd td#columnDish input#dishDropdown datalist")
 
     $("<option></option>")
@@ -237,16 +237,36 @@ function formTableToCreate() {
         .appendTo("tbody tr#rowAdd td#columnButton div button#btnCloseCreateMenu span")
 }
 
-function fillMenusForAnonymous(menus) {
-
+function fillTakoyakiMenusForAnonymous(menus) {
+    console.log(menus)
     $.each(menus, function(index, menu) {
 
-        $("<div></div>")
-            .attr('class', "col-lg-4 menu-item")
-            .appendTo("#anonymousMenu");
+        if (menu.today === true) {
+            console.log(menu)
+            $("<div></div>")
+                .attr('class', "col-lg-4 menu-item")
+                .attr('id', menu.menuId)
+                .appendTo("#anonymousMenuTakoyaki");
 
-        $("<img></img>")
-            .attr('src', )
+            $("<img></img>")
+                .attr('src', "data:" + menu.fileType + ";base64,"+menu.fileByte)
+                .attr('class', "menu-img img-fluid")
+                .appendTo("#anonymousMenuTakoyaki div#" + menu.menuId);
+
+            $("<h4></h4>")
+                .text(menu.name)
+                .appendTo("#anonymousMenuTakoyaki div#" + menu.menuId);
+
+            $("<p></p>")
+                .attr('class', "ingredients")
+                .text(menu.description)
+                .appendTo("#anonymousMenuTakoyaki div#" + menu.menuId);
+
+            $("<p></p>")
+                .attr('class', "price")
+                .text("₱ " + menu.price)
+                .appendTo("#anonymousMenuTakoyaki div#" + menu.menuId);
+        }
 
     });
 }
