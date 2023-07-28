@@ -237,35 +237,35 @@ function formTableToCreate() {
         .appendTo("tbody tr#rowAdd td#columnButton div button#btnCloseCreateMenu span")
 }
 
-function fillTakoyakiMenusForAnonymous(menus) {
+function fillMenusForAnonymous(menus, appendIn) {
     console.log(menus)
     $.each(menus, function(index, menu) {
 
         if (menu.today === true) {
-            console.log(menu)
+            console.log(appendIn)
             $("<div></div>")
                 .attr('class', "col-lg-4 menu-item")
                 .attr('id', menu.menuId)
-                .appendTo("#anonymousMenuTakoyaki");
+                .appendTo(appendIn);
 
             $("<img></img>")
                 .attr('src', "data:" + menu.fileType + ";base64,"+menu.fileByte)
                 .attr('class', "menu-img img-fluid")
-                .appendTo("#anonymousMenuTakoyaki div#" + menu.menuId);
+                .appendTo(appendIn + " div#" + menu.menuId);
 
             $("<h4></h4>")
                 .text(menu.name)
-                .appendTo("#anonymousMenuTakoyaki div#" + menu.menuId);
+                .appendTo(appendIn + " div#" + menu.menuId);
 
             $("<p></p>")
                 .attr('class', "ingredients")
                 .text(menu.description)
-                .appendTo("#anonymousMenuTakoyaki div#" + menu.menuId);
+                .appendTo(appendIn + " div#" + menu.menuId);
 
             $("<p></p>")
                 .attr('class', "price")
                 .text("₱ " + menu.price)
-                .appendTo("#anonymousMenuTakoyaki div#" + menu.menuId);
+                .appendTo(appendIn + " div#" + menu.menuId);
         }
 
     });

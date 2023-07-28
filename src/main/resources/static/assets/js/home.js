@@ -1,6 +1,9 @@
 $(document).ready(function() {
-	
+
+	retrieveSideDishMenusForAnonymous();
     retrieveTakoyakiMenusForAnonymous();
+    retrieveBeveragehMenusForAnonymous();
+    
     retrieveMenuForUsers();
     
     var confirmedPassword = false;
@@ -163,15 +166,27 @@ $(document).ready(function() {
     }
 
     function retrieveTakoyakiMenusForAnonymous() {
+        retrieveMenuForAnonymous("Takoyaki", "#anonymousMenuTakoyaki");
+    }
+
+    function retrieveSideDishMenusForAnonymous() {
+        retrieveMenuForAnonymous("Side Dish", "#anonymousMenuSideDish");
+    }
+
+    function retrieveBeveragehMenusForAnonymous() {
+        retrieveMenuForAnonymous("Beverage", "#anonymousMenuBeverage");
+    }
+
+    function retrieveMenuForAnonymous(find, appendId) {
         $.ajax({
-            url: takoyomai + '/menu/retrieveType/Takoyaki',
+            url: takoyomai + '/menu/retrieveType/' + find,
             contentType: 'application/json',
             type: GET,
             success: function(data) {
-                console.log(data)
+                // console.log(data)
                 if (data.status === "success") {
                     if (data.object != null) {
-                        fillTakoyakiMenusForAnonymous(data.object.menuDtos);
+                        fillMenusForAnonymous(data.object.menuDtos, appendId);
                     }
                 }
             },
@@ -181,9 +196,13 @@ $(document).ready(function() {
         });
     }
 
+    $("div.tab-content div div.row").on('dblclick', 'div.menu-item', function() {
+        console.log($(this).attr('id'));
+    });
+
     $("#tableMenu tbody").on('change', 'tr', function() {
         var index = $(this).find('input:checkbox')[0].checked;
-        alert($(this).find('input:checkbox')[0].id)
+        //alert($(this).find('input:checkbox')[0].id)
         //console.log($(this).find('input:checkbox')[0].checked)
         $.ajax({
             url: takoyomai + '/menu/menufortoday/' + $(this).find('input:checkbox')[0].id,

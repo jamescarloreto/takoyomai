@@ -46,7 +46,6 @@ public class MenuController {
 	public ResponseEntity<Object> retrieveMenu() {
 		logger.info("MenuController | retrieve - retrieveMenu | START");
 		MenuDto menuDto = menuService.retreiveMenu(null);
-		logger.info("MenuController | retrieveMenu | type :: " + menuDto.toString());
 		AjaxResponse<Object> ajaxResponse = new AjaxResponse<Object>("success", menuDto);
 		
 		return new ResponseEntity<Object>(ajaxResponse, HttpStatus.OK);
@@ -56,7 +55,6 @@ public class MenuController {
 	public ResponseEntity<Object> retrieveMenu(@PathVariable String foodType) {
 		logger.info("MenuController | retrieve - retrieveMenu | START");
 		MenuDto menuDto = menuService.retreiveMenu(foodType);
-		logger.info("MenuController | retrieveMenu | type :: " + menuDto.toString());
 		AjaxResponse<Object> ajaxResponse = new AjaxResponse<Object>("success", menuDto);
 		
 		return new ResponseEntity<Object>(ajaxResponse, HttpStatus.OK);

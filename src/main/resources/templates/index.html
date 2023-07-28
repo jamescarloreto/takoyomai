@@ -250,123 +250,8 @@
           </div>
         </div>
       </div>
-
-      <!-- For Customer Role -->
-      <div class="container" data-aos="fade-up" sec:authorize="hasRole('CUSTOMER')">
-
-        <div class="section-header">
-          <h2>Our Menu</h2>
-          <p>Check Our <span>Takoyomai Menu</span></p>
-        </div>
-
-        <ul class="nav nav-tabs d-flex justify-content-center" data-aos="fade-up" data-aos-delay="200">
-
-          <li class="nav-item">
-            <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#menu-takoyaki">
-              <h4>Takoyaki</h4>
-            </a>
-          </li><!-- End tab nav item -->
-
-          <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-sidedish">
-              <h4>Side Dish</h4>
-            </a><!-- End tab nav item -->
-
-          <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#menu-beverage">
-              <h4>Beverage</h4>
-            </a>
-          </li><!-- End tab nav item -->
-
-        </ul>
-
-        <div class="tab-content" data-aos="fade-up" data-aos-delay="300">
-          <div class="tab-pane fade active show" id="menu-takoyaki">
-            <div class="tab-header text-center">
-              <p>Menu</p>
-              <h3>Main</h3>
-            </div>
-            <div class="row gy-5">
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/TAKOYAKI/Original.png" class="glightbox"><img src="assets/img/TAKOYAKI/Original.png" class="menu-img img-fluid" alt=""></a>
-                <h4>TAKOYAKI</h4>
-                <p class="ingredients">
-                  Filled with octobits. Topped with takoyaki sauce, japanese mayo, aonori (seaweed flakes) , togarashi (chili powder) and bonito flakes.
-                </p>
-                <p class="price">
-                  ₱89.00
-                </p>
-              </div><!-- Menu Item -->
-            </div>
-          </div><!-- End Starter Menu Content -->
-
-          <div class="tab-pane fade" id="menu-sidedish">
-
-            <div class="tab-header text-center">
-              <p>Menu</p>
-              <h3>Side dish</h3>
-            </div>
-
-            <div class="row gy-5">
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/menu/garlic.jpg" class="glightbox"><img src="assets/img/menu/garlic.jpg" class="menu-img img-fluid" alt=""></a>
-                <h4>Garlic Mashed Potatoes</h4>
-                <p class="ingredients">
-                  Garlic mashed potatoes are a popular side dish that pairs well with a variety of main courses. The garlic adds depth and richness to the creamy mashed potatoes, creating a savory and satisfying taste.
-                </p>
-                <p class="price">
-                  ₱100.00
-                </p>
-              </div><!-- Menu Item -->
-            </div>
-          </div><!-- End Breakfast Menu Content -->
-
-          <div class="tab-pane fade" id="menu-beverage">
-            <div class="tab-header text-center">
-              <p>Menu</p>
-              <h3>Drinks</h3>
-            </div>
-            <div class="row gy-5">
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/drinks/BANANA MILK COFFEE.webp" class="glightbox"><img src="assets/img/drinks/BANANA MILK COFFEE.webp" class="menu-img img-fluid" alt=""></a>
-                <h4>Banana Milk Coffee</h4>
-                <p class="ingredients">
-                  Adding creamy smooth banana milk to your morning cold brew makes it taste rich and delicious. Talk about an eye-opening good-for-you breakfast in a cup!
-                </p> 
-                <p class="price">
-                  ₱89.00
-                </p>
-              </div><!-- Menu Item -->
-            </div>
-          </div><!-- End Lunch Menu Content -->
-
-          <div class="tab-pane fade" id="menu-dinner">
-
-            <div class="tab-header text-center">
-              <p>Menu</p>
-              <h3>Dinner</h3>
-            </div>
-
-            <div class="row gy-5">
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/menu/menu-item-1.png" class="glightbox"><img src="assets/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
-                <h4>Magnam Tiste</h4>
-                <p class="ingredients">
-                  Lorem, deren, trataro, filede, nerada
-                </p>
-                <p class="price">
-                  $5.95
-                </p>
-              </div><!-- Menu Item -->
-            </div>
-          </div><!-- End Dinner Menu Content -->
-
-        </div>
-
-      </div>
-
       <!-- isAnonymous -->
-      <div class="container" data-aos="fade-up" sec:authorize="isAnonymous()">
+      <div class="container" data-aos="fade-up" sec:authorize="{hasRole('CUSTOMER') or isAnonymous()}">
 
         <div class="section-header" >
           <h2>Our Menu</h2>
@@ -415,73 +300,7 @@
               <h3>Side dish</h3>
             </div>
 
-            <div class="row gy-5">
-
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/menu/garlic.jpg" class="glightbox"><img src="assets/img/menu/garlic.jpg" class="menu-img img-fluid" alt=""></a>
-                <h4>Garlic Mashed Potatoes</h4>
-                <p class="ingredients">
-                  Garlic mashed potatoes are a popular side dish that pairs well with a variety of main courses. The garlic adds depth and richness to the creamy mashed potatoes, creating a savory and satisfying taste.
-                </p>
-                <p class="price">
-                  ₱100.00
-                </p>
-              </div><!-- Menu Item -->
-
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/menu/potato.jpg" class="glightbox"><img src="assets/img/menu/potato.jpg" class="menu-img img-fluid" alt=""></a>
-                <h4>Sweet Potato Salad</h4>
-                <p class="ingredients">
-                  Sweet potato salad is a delightful dish that features the natural sweetness of sweet potatoes. It offers a unique and delicious twist to traditional salads. The salad is typically prepared with a variety of ingredients to complement and enhance the flavor of the sweet potatoes.
-                </p>
-                <p class="price">
-                  ₱85.00
-                </p>
-              </div><!-- Menu Item -->
-
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/menu/bacon.jpg" class="glightbox"><img src="assets/img/menu/bacon.jpg" class="menu-img img-fluid" alt=""></a>
-                <h4>Bacon Fried Cabbage</h4>
-                <p class="ingredients">
-                  The combination of smoky and salty bacon with the slightly sweet cabbage creates a delicious balance of flavors. It can be served as a hearty side dish or enjoyed on its own. Bacon fried cabbage is a versatile dish that can be customized to suit personal preferences and can be a great addition to various meals.
-                </p>
-                <p class="price">
-                  ₱100.00
-                </p>
-              </div><!-- Menu Item -->
-
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/menu/cannellini.jpg" class="glightbox"><img src="assets/img/menu/cannellini.jpg" class="menu-img img-fluid" alt=""></a>
-                <h4>Cannellini Beans with Herb Sauce</h4>
-                <p class="ingredients">
-                  Cannellini beans with herb sauce is a delicious dish that combines tender cannellini beans with a flavorful herb-infused sauce. The beans are enhanced by the aromatic and fresh flavors of the herb sauce, resulting in a nutritious and satisfying option.
-                </p>
-                <p class="price">
-                  ₱150.00
-                </p>
-              </div><!-- Menu Item -->
-
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/menu/cheesy.jpg" class="glightbox"><img src="assets/img/menu/cheesy.jpg" class="menu-img img-fluid" alt=""></a>
-                <h4>Cheesy Bacon Butternut Squash</h4>
-                <p class="ingredients">
-                  This delightful combination creates a rich and satisfying taste experience. The sweetness of the butternut squash pairs perfectly with the salty and smoky flavors of the bacon, while the melted cheese adds a creamy and indulgent element. Cheesy bacon butternut squash is a comforting and hearty dish that can be served as a side dish or even as a main course.
-                </p>
-                <p class="price">
-                  ₱125.00
-                </p>
-              </div><!-- Menu Item -->
-
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/menu/crispy.jpg" class="glightbox"><img src="assets/img/menu/crispy.jpg" class="menu-img img-fluid" alt=""></a>
-                <h4>Air Fryer Crispy Potatoes</h4>
-                <p class="ingredients">
-                  Air fryer crispy potatoes are a healthier alternative to traditional fried potatoes, as they require less oil and still deliver satisfyingly crispy results. The cooking method ensures that the potatoes are evenly cooked and golden brown on the outside, while remaining tender and fluffy on the inside. This makes them a versatile side dish that pairs well with a variety of meals or can be enjoyed as a tasty snack.
-                </p>
-                <p class="price">
-                  ₱85.00
-                </p>
-              </div><!-- Menu Item -->
+            <div class="row gy-5" id="anonymousMenuSideDish">
 
             </div>
           </div><!-- End Breakfast Menu Content -->
@@ -493,74 +312,7 @@
               <h3>Drinks</h3>
             </div>
 
-            <div class="row gy-5">
-
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/drinks/BANANA MILK COFFEE.webp" class="glightbox"><img src="assets/img/drinks/BANANA MILK COFFEE.webp" class="menu-img img-fluid" alt=""></a>
-                <h4>Banana Milk Coffee</h4>
-                <p class="ingredients">
-                  Adding creamy smooth banana milk to your morning cold brew makes it taste rich and delicious. Talk about an eye-opening good-for-you breakfast in a cup!
-                </p> 
-                <p class="price">
-                  ₱89.00
-                </p>
-              </div><!-- Menu Item -->
-
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/drinks/Caramel Coconut Iced Coffee.webp" class="glightbox"><img src="assets/img/drinks/Caramel Coconut Iced Coffee.webp" class="menu-img img-fluid" alt=""></a>
-                <h4>Caramel Coconut Iced Coffee
-                </h4>
-                <p class="ingredients">
-                  Refreshing and light, Iced Coconut Caramel Macchiato is a wonderful blend of iced coffee, coconut milk and caramel syrup. Cool and satisfying, it’s a wonderful way to beat the heat during summer’s last steamy days
-                </p>
-                <p class="price">
-                  ₱89.00
-                </p>
-              </div><!-- Menu Item -->
-
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/drinks/Chocolate-y Iced Mocha.webp" class="glightbox"><img src="assets/img/drinks/Chocolate-y Iced Mocha.webp" class="menu-img img-fluid" alt=""></a>
-                <h4>Chocolate Iced Mocha</h4>
-                <p class="ingredients">
-                  Bold coffee flavours with a chocolatey, ice-cold vibe.  Make one just for you, your way. The rich combination of our full-bodied espresso with a sweet mocha sauce, milk and ice are elevated in the blending of these flavours. Topped with ice and whipped cream, you'll enjoy this dreamy cold beverage that boasts full and bold flavours
-                </p>
-                <p class="price">
-                  ₱89.00
-                </p>
-              </div><!-- Menu Item -->
-
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/drinks/Cold-Brewed Coffee.webp" class="glightbox"><img src="assets/img/drinks/Cold-Brewed Coffee.webp" class="menu-img img-fluid" alt=""></a>
-                <h4>Cold-brewed Dark Coffee</h4>
-                <p class="ingredients">
-                  dark coffee is usually prepared in hot, iced, or cold versions. It is a strong, rich, and refreshing drink that has many health benefits to kick-start your day.
-                </p>
-                <p class="price">
-                  ₱89.00
-                </p>
-              </div><!-- Menu Item -->
-
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/drinks/Easy Iced Coffee.webp" class="glightbox"><img src="assets/img/drinks/Easy Iced Coffee.webp" class="menu-img img-fluid" alt=""></a>
-                <h4>Easy Iced Coffee</h4>
-                <p class="ingredients">
-                  Instant coffee, ice, milk, sugar
-                </p>
-                <p class="price">
-                  ₱89.00
-                </p>
-              </div><!-- Menu Item -->
-
-              <div class="col-lg-4 menu-item">
-                <a href="assets/img/drinks/Iced Caramel Macchiato.webp" class="glightbox"><img src="assets/img/drinks/Iced Caramel Macchiato.webp" class="menu-img img-fluid" alt=""></a>
-                <h4>Iced Caramel Macchiato</h4>
-                <p class="ingredients">
-                  We combine our rich, full-bodied espresso with vanilla-flavored syrup, milk and ice, then top it off with a caramel drizzle for an oh-so-sweet finish.
-                </p>
-                <p class="price">
-                  ₱89.00
-                </p>
-              </div><!-- Menu Item -->
+            <div class="row gy-5" id="anonymousMenuBeverage">
 
             </div>
           </div><!-- End Lunch Menu Content -->
@@ -963,7 +715,7 @@
             <div class="modal-body p-4 p-md-5">
               <form class="login-form">
                 <div class="row gy-4">
-                  <div class="col-lg-12 col-md-6">
+                  <!-- <div class="col-lg-12 col-md-6">
                     <div id="sign-in-message" class="text-center" hidden></div>
                   </div>
                   <div class="col-lg-12 col-md-6">
@@ -977,7 +729,7 @@
                       <span id="signInLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" hidden></span>
                       Sign In
                     </button>
-                  </div>
+                  </div> -->
                 </div>
               </form>
             </div>
@@ -985,6 +737,43 @@
         </div>
       </div>
       <!-- Profile Modal End -->
+    </section>
+
+    <section>
+      <!-- Orders Modal -->
+      <div class="order-form modal-order fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-order-dialog modal-order-dialog-centered" role="document">
+          <div class="modal-order-content">
+            <div class="modal-order-header">
+              <button id="btnProfileClose" type="button" class="close d-flex align-items-center justify-content-center" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" class="ion-ios-close"></span>
+              </button>
+            </div>
+            <div class="modal-order-body p-4 p-md-5">
+              <form class="login-form">
+                <div class="row gy-4">
+                  <!-- <div class="col-lg-12 col-md-6">
+                    <div id="sign-in-message" class="text-center" hidden></div>
+                  </div>
+                  <div class="col-lg-12 col-md-6">
+                    <input type="email" name="email" class="form-control" id="username" placeholder="Email Address" data-rule="minlen:4" data-msg="Please enter valid email address "> 
+                  </div>
+                  <div class="col-lg-12 col-md-6">
+                    <input type="password" class="form-control" name="signInPw" id="password" placeholder="Password" data-rule="minlen:1" data-msg="Please enter at least 1 chars">
+                  </div>
+                  <div class="text-center">
+                    <button type="button" class="btn-red-button" id="btnSignIn">
+                      <span id="signInLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" hidden></span>
+                      Sign In
+                    </button>
+                  </div> -->
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Orders End -->
     </section>
   </main><!-- End #main -->
   
