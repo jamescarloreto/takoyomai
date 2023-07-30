@@ -18,8 +18,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -31,7 +33,7 @@ public class Order {
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private long orderId;
 	
-	@ManyToMany (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToMany (fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
 	@JoinTable(name = "order_menu", 
 			joinColumns = @JoinColumn(
 				name = "orderId",
@@ -41,9 +43,9 @@ public class Order {
 				referencedColumnName = "id"))
 	private List<Menu> menus;
 	
-	@OneToOne (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private UserInformationDetail userInformationDetail;
-	
+	private String username;
 	private LocalDate orderDate;
-	
+	private boolean isPaid;
+	private double totalOrder;
+	private LocalDate paidDate;
 }

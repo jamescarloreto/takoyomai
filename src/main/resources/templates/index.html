@@ -67,7 +67,7 @@
         </a>
         <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 34px);" data-popper-placement="bottom-start">
           <li><a id="btnProfileModal" class="dropdown-item" data-toggle="modal" data-target="#profileModal">Profile</a></li>
-          <li><a class="dropdown-item" sec:authorize="hasRole('CUSTOMER')">Orders</a></li>
+          <li><a id="btnOrderModal" class="dropdown-item" sec:authorize="hasRole('CUSTOMER')">Orders</a></li>
           <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item" id="ddSignOut">Sign out</a></li>
         </ul>
@@ -89,6 +89,17 @@
         </div>
         <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
           <img src="assets/img/logo-img.png" class="img-fluid" alt="" data-aos="zoom-out" data-aos-delay="300">
+        </div>
+      </div>
+    </div>
+
+    <div class="position-fixed bottom-0 start-0 p-3" style="z-index: 11">
+      <div class="toast align-items-center text-white bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div class="toast-body">
+            Menu added to cart successfully!
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
       </div>
     </div>
@@ -740,40 +751,43 @@
     </section>
 
     <section>
-      <!-- Orders Modal -->
-      <div class="order-form modal-order fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-order-dialog modal-order-dialog-centered" role="document">
-          <div class="modal-order-content">
-            <div class="modal-order-header">
-              <button id="btnProfileClose" type="button" class="close d-flex align-items-center justify-content-center" data-dismiss="modal" aria-label="Close">
+      <!-- Order Modal -->
+      <div class="order-form modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button id="btnOrderClose" type="button" class="close d-flex align-items-center justify-content-center" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true" class="ion-ios-close"></span>
               </button>
             </div>
-            <div class="modal-order-body p-4 p-md-5">
-              <form class="login-form">
-                <div class="row gy-4">
-                  <!-- <div class="col-lg-12 col-md-6">
-                    <div id="sign-in-message" class="text-center" hidden></div>
-                  </div>
-                  <div class="col-lg-12 col-md-6">
-                    <input type="email" name="email" class="form-control" id="username" placeholder="Email Address" data-rule="minlen:4" data-msg="Please enter valid email address "> 
-                  </div>
-                  <div class="col-lg-12 col-md-6">
-                    <input type="password" class="form-control" name="signInPw" id="password" placeholder="Password" data-rule="minlen:1" data-msg="Please enter at least 1 chars">
-                  </div>
-                  <div class="text-center">
-                    <button type="button" class="btn-red-button" id="btnSignIn">
-                      <span id="signInLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" hidden></span>
-                      Sign In
-                    </button>
-                  </div> -->
-                </div>
-              </form>
+            <div class="modal-body p-4 p-md-5">
+              <h3 class="text-center mb-4">Place Order</h3>
+              <table class="table" id="tableOrder">
+                <thead class="thead-primary">
+                  <tr>
+                    <th class="col-sm-1">Name</th>
+                    <th class="col-md-2 text-center">Quantity</th>
+                    <th class="col-md-2 text-center">Price</th>
+                    <th class="col-md-2"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer justify-content-center">
+              <div class="text-center">
+                <button type="button" class="btn-red-button" id="btnPlaceOrder">
+                  <span id="btnPlaceOrderSpinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" hidden></span>
+                  Check Out
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <!-- Orders End -->
+      <!-- Order Modal End -->
     </section>
   </main><!-- End #main -->
   
@@ -856,6 +870,7 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/menu.js"></script>
+  <script src="assets/js/order.js"></script>
   <script src="assets/js/home.js"></script>
   <script src="assets/js/main.js"></script>
   

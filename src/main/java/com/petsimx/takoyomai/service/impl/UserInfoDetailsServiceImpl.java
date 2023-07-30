@@ -1,5 +1,6 @@
 package com.petsimx.takoyomai.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -19,6 +20,7 @@ import com.petsimx.takoyomai.model.UserInformationDetail;
 import com.petsimx.takoyomai.repository.UserInformationDetailsRepository;
 import com.petsimx.takoyomai.service.EmailService;
 import com.petsimx.takoyomai.service.UserInfoDetailsService;
+import com.petsimx.takoyomai.utils.UserDetailUtils;
 
 @Service
 public class UserInfoDetailsServiceImpl implements UserInfoDetailsService {
@@ -45,8 +47,12 @@ public class UserInfoDetailsServiceImpl implements UserInfoDetailsService {
 		if (userInformationDetailsRepository.findByEmail(userInformationDetail.getEmail()).isPresent()) {
 			throw new EmailExistingException("Email existing!");
 		}
+		
+		List<UserInformationDetail> UserInfoDetails = userInformationDetailsRepository.findAll();
 			
-		if (!username.isEmpty()) {
+		if (UserInfoDetails.isEmpty()) {
+			userInformationDetail.setRole("ROLE_ADMIN");
+		} else if (!username.isEmpty()) {
 			userInformationDetail.setRole("ROLE_USER");
 		} else {
 			userInformationDetail.setRole("ROLE_CUSTOMER");
@@ -77,13 +83,11 @@ public class UserInfoDetailsServiceImpl implements UserInfoDetailsService {
 		return userInformationDetails.map(UserInfoDetailsBean::new).orElseThrow(() -> new EmailNotFoundException("Email " + username + " not found!"));
 	}
 
-	@SuppressWarnings("finally")
 	@Override
 	public UserInfoDetailsDto getUserDetails() {
 		logger.info("UserInfoDetailsServiceImpl | getUserDetails | START");
 		try {
-			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		    String username = authentication.getName();
+			String username = UserDetailUtils.getUsername();
 		    
 		    logger.info("UserInfoDetailsServiceImpl | getUserDetails | username :: " + username);
 		    

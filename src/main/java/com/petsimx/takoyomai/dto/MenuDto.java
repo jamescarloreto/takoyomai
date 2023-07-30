@@ -21,7 +21,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@ToString
 public class MenuDto {
 	
 	private Menu menu = new Menu();
@@ -49,5 +48,11 @@ public class MenuDto {
 		this.fileByte = fileByte;
 		this.fileType = fileType;
 		this.isToday = isToday;
+	}
+
+	@Override
+	public String toString() {
+		return "MenuDto [menuId=" + menuId + ", name=" + name + ", description=" + description + ", price=" + price
+				+ ", type=" + type + ", isToday=" + isToday + ", fileType=" + fileType + "]";
 	}
 }

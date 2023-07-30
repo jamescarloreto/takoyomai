@@ -126,8 +126,8 @@ $(document).ready(function() {
         formData.append('price', $("#menuPrice").val());
         formData.append('type', $("#dishDropdown").val());
 
-        console.log($("#fileData").val())
-        console.log(formData)
+        // console.log($("#fileData").val())
+        // console.log(formData)
         
         $.ajax({
             url: takoyomai + '/menu/create',
@@ -197,7 +197,26 @@ $(document).ready(function() {
     }
 
     $("div.tab-content div div.row").on('dblclick', 'div.menu-item', function() {
-        console.log($(this).attr('id'));
+        // console.log($(this).attr('id'));
+
+        $.ajax({
+            url: takoyomai + '/order/placeorder/' + $(this).attr('id'),
+            contentType: 'application/json',
+            type: POST,
+            success: function(data) {
+                // console.log(data)
+                if (data.status === "success") {
+                    var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+                    var toastList = toastElList.map(function(toastEl) {
+                        return new bootstrap.Toast(toastEl)
+                    })
+                    toastList.forEach(toast => toast.show()) 
+                }
+            },
+            error: function(jq,status,message) {
+                console.log(message)
+            },
+        });
     });
 
     $("#tableMenu tbody").on('change', 'tr', function() {
@@ -209,7 +228,6 @@ $(document).ready(function() {
             contentType: 'application/json',
             type: ($(this).find('input:checkbox')[0].checked ? POST : DELETE),
             success: function(data) {
-                //retrieveMenuForUsers();
             }
         });
     });
@@ -245,6 +263,65 @@ $(document).ready(function() {
     $("#btnProfileClose").on('click', function() {
         $("#profileModal").modal('toggle');
     });
+
+    $("#btnOrderModal").on('click', function() {
+        showOrder();
+
+        $("#orderModal").modal('toggle');
+    });
+
+    $("#btnOrderClose").on('click', function() {
+        $("#orderModal").modal('toggle');
+    });
+
+    $("#tableOrder tbody").on('click', 'tr button', function() {
+        var id = $(this).attr('id')
+        
+        $.ajax({
+            url: takoyomai + '/order/removeorder/' + $(this).attr('id'),
+            contentType: 'application/json',
+            type: DELETE,
+            success: function(data) {
+                if (data.status === "success") {
+                    if (data.object != null) {
+                        showOrder();
+                    }
+                }
+            }
+        });
+    });
+
+    $("#btnPlaceOrder").on('click', function() {
+        $.ajax({
+            url: takoyomai + '/order/checkout',
+            contentType: 'application/json',
+            type: POST,
+            success: function(data) {
+                if (data.status === "success") {
+                    $("#orderModal").modal('toggle');
+                }
+            }
+        });
+
+    });
+
+    function showOrder() {
+        var toShowModal = false;
+        $.ajax({
+            url: takoyomai + '/order/showorder',
+            contentType: 'application/json',
+            type: GET,
+            success: function(data) {
+                if (data.status === "success") {
+                    
+                    toShowModal = true;
+                    fillOrders(data.object);
+                }
+            }
+        });
+
+        return toShowModal;
+    }
 
     function hideFields(isHide) {
         $("#columnDish input").attr('hidden', isHide);

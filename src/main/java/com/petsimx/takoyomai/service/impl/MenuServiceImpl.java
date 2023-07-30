@@ -11,6 +11,7 @@ import com.petsimx.takoyomai.utils.FileDataUtils;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -44,9 +45,10 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public MenuDto retreiveMenu(String foodType) {
+	public synchronized MenuDto retreiveMenu(String foodType) {
 		List<Menu> menus;
 		MenuDto menuDto = new MenuDto();
+		List<MenuDto> menuDtos = new ArrayList<MenuDto>();
 		
 		if (foodType == null) {
 			menus = menuRepository.findAll();
@@ -55,26 +57,29 @@ public class MenuServiceImpl implements MenuService {
 			menus = menuRepository.findByType(foodType);
 		}
 		
-		logger.info("retreiveMenu | menus :: " + menus.toString());
-		
 		menus.stream()
 		.forEach(menu -> {
 			byte[] file = FileDataUtils.decompressImage(menu.getFile().getFileByte());
-			List<MenuForToday> menusToday = menuForTodayRepository.findByMenuId(menu.getId());
+			MenuForToday menuToday = menuForTodayRepository.findByMenuId(menu.getId());
 			
-			if (menusToday.size() != 0) {
-				menusToday.stream().forEach(menuToday -> {
-					if (menuToday.getToday().equals(LocalDate.now())) {
-						menuDto.getMenuDtos().add(new MenuDto(menu.getId(), menu.getName(), menu.getDescription(), menu.getPrice(), menu.getType(), file, menu.getFile().getType(), true));
-					} else {
-						menuDto.getMenuDtos().add(new MenuDto(menu.getId(), menu.getName(), menu.getDescription(), menu.getPrice(), menu.getType(), file, menu.getFile().getType(), false));
-					}
-				});
+			if (menuToday != null) {
+				menuDto.getMenuDtos().add(new MenuDto(menu.getId(), menu.getName(), menu.getDescription(), menu.getPrice(), menu.getType(), file, menu.getFile().getType(), true));
 			} else {
 				menuDto.getMenuDtos().add(new MenuDto(menu.getId(), menu.getName(), menu.getDescription(), menu.getPrice(), menu.getType(), file, menu.getFile().getType(), false));
 			}
 		});
 		
+		if (foodType != null) {
+			menuDto.getMenuDtos().stream().filter(dto -> dto.isToday())
+			.forEach(menu -> {
+				menuDtos.add(menu);
+			});
+			
+			menuDto.setMenuDtos(menuDtos);
+		}
+		
+		
+		logger.info("retreiveMenu | menuDto :: " + menuDto.getMenuDtos().toString());
 		return menuDto;
 	}
 
@@ -90,14 +95,10 @@ public class MenuServiceImpl implements MenuService {
 	@Override
 	public String deleteMenuForToday(Long menuId) {
 		
-		List<MenuForToday> menusToday = menuForTodayRepository.findByMenuId(menuId);
+		MenuForToday menuToday = menuForTodayRepository.findByMenuId(menuId);
 		
-		if (menusToday.size() != 0) {
-			menusToday.stream().forEach(todayMenu -> {
-				if (todayMenu.getToday().equals(LocalDate.now())) {
-					menuForTodayRepository.delete(todayMenu);
-				}
-			});
+		if (menuToday != null) {
+			menuForTodayRepository.delete(menuToday);
 		} else {
 			return "Non to remove";
 		}

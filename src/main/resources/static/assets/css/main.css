@@ -2308,3 +2308,31 @@ button.btnClose {
   border: none;
   background: #f8f8f8; 
 }
+
+.order-form .btn-red-button {
+  background: var(--color-primary);
+  border: 0;
+  padding: 14px 60px;
+  color: #fff;
+  transition: 0.4s;
+  border-radius: 50px;
+}
+
+.order-form .btn-red-button:hover {
+  background: #ec2727;
+}
+
+.order-form input {
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 14px;
+  border-radius: 0;
+}
+
+.order-form input:focus {
+  border-color: var(--color-primary);
+}
+
+.order-form input {
+  padding: 12px 15px;
+}
