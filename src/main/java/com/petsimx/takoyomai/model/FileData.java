@@ -27,6 +27,6 @@ public class FileData {
 	private String type;
 	
 	@Lob
-	@Column( length = 4000 )
+	@Column( length = 5000000 )
 	private byte[] fileByte;
 }
