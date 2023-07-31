@@ -315,13 +315,86 @@ $(document).ready(function() {
                 if (data.status === "success") {
                     
                     toShowModal = true;
-                    fillOrders(data.object);
+                    fillOrders(data.object, false, "table#tableOrder tbody");
                 }
             }
         });
 
         return toShowModal;
     }
+
+    $("#btnViewOrderModal").on('click', function() {
+
+        $.ajax({
+                url: takoyomai + '/order/vieworderhistory',
+                contentType: 'application/json',
+                type: GET,
+                success: function(data) {
+                    if (data.status === "success") {
+                        fillViewOrderHistory(data.object);
+                    }
+                }
+            });
+
+        // $.ajax({
+        //     url: takoyomai + '/order/showorder',
+        //     contentType: 'application/json',
+        //     type: GET,
+        //     success: function(data) {
+        //         if (data.status === "success") {
+                    
+        //             toShowModal = true;
+        //             fillOrders(data.object, true, "table#tableViewOrder tbody");
+        //         }
+        //     }
+        // });
+        $("#viewOrderHistory").modal('toggle');
+    });
+
+    $("#btnHistoryOrderClose").on('click', function() {
+        $("#viewOrderHistory").modal('toggle');
+    });
+
+    $("#btnCloseOrderHistory").on('click', function() {
+        $("#viewOrderHistory").modal('toggle');
+    });
+
+    $("#tableViewOrderHistory tbody").on('click', 'tr', function() {
+
+        $.ajax({
+            url: takoyomai + '/order/vieworder/' + $(this).attr('id'),
+            contentType: 'application/json',
+            type: GET,
+            success: function(data) {
+                if (data.status === "success") {
+                    if (data.object != null) {
+                        $("#viewOrderHistory").modal('toggle');
+                        $("#viewOrderModal").modal('toggle');
+
+                        fillOrders(data.object, true, "table#tableViewOrder tbody");
+
+                    }
+                }
+            }
+        });
+    });
+
+    $("#btnViewOrderClose").on('click', function() {
+        $("#viewOrderModal").modal('toggle');
+    });
+
+    $("#btnPrintViewOrder").on('click', function() {
+        
+        const modalBody = $("#modal-body").html();
+
+        // const content = $("#modal-content").detach();
+        // $("<section></section>")
+        // .append(modalBody);
+        window.print();
+        section.empty();
+        section.append(content);
+        $("#modal-body-wrapper").append(modalBody);
+    });
 
     function hideFields(isHide) {
         $("#columnDish input").attr('hidden', isHide);

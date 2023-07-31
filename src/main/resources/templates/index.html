@@ -68,6 +68,7 @@
         <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 34px);" data-popper-placement="bottom-start">
           <li><a id="btnProfileModal" class="dropdown-item" data-toggle="modal" data-target="#profileModal">Profile</a></li>
           <li><a id="btnOrderModal" class="dropdown-item" sec:authorize="hasRole('CUSTOMER')">Orders</a></li>
+          <li><a id="btnViewOrderModal" class="dropdown-item" sec:authorize="hasRole('CUSTOMER')">View Orders</a></li>
           <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item" id="ddSignOut">Sign out</a></li>
         </ul>
@@ -788,6 +789,88 @@
         </div>
       </div>
       <!-- Order Modal End -->
+    </section>
+
+    <section>
+      <!-- View Order History Modal -->
+      <div class="history-order-form modal fade" id="viewOrderHistory" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button id="btnHistoryOrderClose" type="button" class="close d-flex align-items-center justify-content-center" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" class="ion-ios-close"></span>
+              </button>
+            </div>
+            <div class="modal-body-wrapper">
+              <div class="modal-body p-4 p-md-5">
+                <h3 class="text-center mb-4">Order History</h3>
+                <table class="table" id="tableViewOrderHistory">
+                  <thead class="thead-primary">
+                    <tr>
+                      <th class="col-sm-1">Order</th>
+                      <th class="col-md-2 text-center">Order Date</th>
+                      <th class="col-md-2 text-center">Order Received</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+              <div class="text-center">
+                <button type="button" class="btn-red-button" id="btnCloseOrderHistory">
+                  <span id="btnPrintReceiptSpinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" hidden></span>
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- View Order History Modal End -->
+    </section>
+
+    <section>
+      <!-- View Order Modal -->
+      <div class="view-order-form modal fade" id="viewOrderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div id="modal-content" class="modal-content">
+            <div class="modal-header">
+              <button id="btnViewOrderClose" type="button" class="close d-flex align-items-center justify-content-center" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true" class="ion-ios-close"></span>
+              </button>
+            </div>
+            <div id="modal-body-wrapper" class="modal-body-wrapper">
+              <div id="modal-body" class="modal-body p-4 p-md-5">
+                <h3 class="text-center mb-4">View Order</h3>
+                <table class="table" id="tableViewOrder">
+                  <thead class="thead-primary">
+                    <tr>
+                      <th class="col-sm-1">Name</th>
+                      <th class="col-md-2 text-center">Quantity</th>
+                      <th class="col-md-2 text-center">Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+              <div class="text-center">
+                <button type="button" class="btn-red-button" id="btnPrintViewOrder">
+                  <span id="btnPrintReceiptSpinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" hidden></span>
+                  Print Receipt
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- View Order Modal End -->
     </section>
   </main><!-- End #main -->
   

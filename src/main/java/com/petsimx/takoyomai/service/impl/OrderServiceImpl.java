@@ -16,6 +16,7 @@ import com.petsimx.takoyomai.model.Menu;
 import com.petsimx.takoyomai.model.Order;
 import com.petsimx.takoyomai.repository.MenuRepository;
 import com.petsimx.takoyomai.repository.OrderRepository;
+import com.petsimx.takoyomai.service.OrderService;
 import com.petsimx.takoyomai.utils.UserDetailUtils;
 
 import jakarta.persistence.Tuple;
@@ -55,19 +56,10 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public OrderDto showOrder() {
 		
-		OrderDto orderDto = new OrderDto();
 		String username = UserDetailUtils.getUsername();
 		List<Tuple> savedOrder = orderRepository.showOrder(username);
 		
-		savedOrder.stream().forEach(order -> {
-			
-			long menuId = Long.parseLong(order.get(0).toString());
-			String menuName = order.get(1).toString();
-			double price = Double.parseDouble(order.get(2).toString());
-			int qnty = Integer.parseInt(order.get(3).toString());
-			
-			orderDto.getOrders().add(new OrderDto(menuId, menuName, price, qnty));
-		});
+		OrderDto orderDto = this.setOrderDto(savedOrder);
 		
 		logger.info(orderDto.toString());
 		
@@ -116,6 +108,23 @@ public class OrderServiceImpl implements OrderService {
 		return "Checked Out Successfully";
 	}
 	
+	private OrderDto setOrderDto(List<Tuple> orders) {
+		
+		OrderDto orderDto = new OrderDto();
+		orders.stream().forEach(order -> {
+			
+			long menuId = Long.parseLong(order.get(0).toString());
+			boolean isPaid = Boolean.parseBoolean(order.get(1).toString());
+			String menuName = order.get(2).toString();
+			double price = Double.parseDouble(order.get(3).toString());
+			int qnty = Integer.parseInt(order.get(4).toString());
+			
+			orderDto.getOrders().add(new OrderDto(menuId, isPaid, menuName, price, qnty));
+		});
+		
+		return orderDto;
+	}
+	
 	private double total(List<OrderDto> orders) {
 		double total = 0;
 		
@@ -124,6 +133,25 @@ public class OrderServiceImpl implements OrderService {
 		}
 		
 		return total;
+	}
+
+	@Override
+	public List<Order> viewOrderHistory() {
+		String username = UserDetailUtils.getUsername();
+		
+		return orderRepository.findByUsername(username);
+	}
+
+	@Override
+	public OrderDto viewOrder(long orderId) {
+		List<Tuple> savedOrder = orderRepository.showOrderByOrderId(orderId);
+		OrderDto orderDto = this.setOrderDto(savedOrder);
+		
+		logger.info(orderDto.toString());
+		
+		orderDto.setTotal(this.total(orderDto.getOrders()));
+		
+		return orderDto;
 	}
 
 }

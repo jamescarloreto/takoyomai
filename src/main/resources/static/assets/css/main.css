@@ -2336,3 +2336,59 @@ button.btnClose {
 .order-form input {
   padding: 12px 15px;
 }
+
+.history-order-form .btn-red-button {
+  background: var(--color-primary);
+  border: 0;
+  padding: 14px 60px;
+  color: #fff;
+  transition: 0.4s;
+  border-radius: 50px;
+}
+
+.history-order-form .btn-red-button:hover {
+  background: #ec2727;
+}
+
+.history-order-form input {
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 14px;
+  border-radius: 0;
+}
+
+.history-order-form input:focus {
+  border-color: var(--color-primary);
+}
+
+.history-order-form input {
+  padding: 12px 15px;
+}
+
+.view-order-form .btn-red-button {
+  background: var(--color-primary);
+  border: 0;
+  padding: 14px 60px;
+  color: #fff;
+  transition: 0.4s;
+  border-radius: 50px;
+}
+
+.view-order-form .btn-red-button:hover {
+  background: #ec2727;
+}
+
+.view-order-form input {
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 14px;
+  border-radius: 0;
+}
+
+.view-order-form input:focus {
+  border-color: var(--color-primary);
+}
+
+.view-order-form input {
+  padding: 12px 15px;
+}

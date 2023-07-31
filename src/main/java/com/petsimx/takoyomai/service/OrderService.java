@@ -1,6 +1,9 @@
-package com.petsimx.takoyomai.service.impl;
+package com.petsimx.takoyomai.service;
+
+import java.util.List;
 
 import com.petsimx.takoyomai.dto.OrderDto;
+import com.petsimx.takoyomai.model.Order;
 
 public interface OrderService {
 
@@ -12,4 +15,7 @@ public interface OrderService {
 
 	String checkOutOrder();
 
+	OrderDto viewOrder(long orderId);
+	
+	List<Order> viewOrderHistory();
 }

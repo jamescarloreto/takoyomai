@@ -1,5 +1,7 @@
 package com.petsimx.takoyomai.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.petsimx.takoyomai.dto.AjaxResponse;
 import com.petsimx.takoyomai.dto.OrderDto;
-import com.petsimx.takoyomai.service.impl.OrderService;
+import com.petsimx.takoyomai.model.Order;
+import com.petsimx.takoyomai.service.OrderService;
 
 @RestController
 @RequestMapping( "/order" ) 
@@ -54,6 +57,22 @@ public class OrderController {
 		String checkOutMsg = orderService.checkOutOrder();
 		
 		AjaxResponse<Object> ajaxResponse = new AjaxResponse<Object>("success", checkOutMsg);
+		return new ResponseEntity<Object>(ajaxResponse, HttpStatus.OK); 
+	}
+	
+	@GetMapping( "/vieworderhistory" )
+	public ResponseEntity<Object> viewOrdersHistory() {
+		List<Order> orders = orderService.viewOrderHistory();
+		
+		AjaxResponse<Object> ajaxResponse = new AjaxResponse<Object>("success", orders);
+		return new ResponseEntity<Object>(ajaxResponse, HttpStatus.OK); 
+	}
+	
+	@GetMapping( "/vieworder/{orderId}" )
+	public ResponseEntity<Object> viewOrder(@PathVariable long orderId) {
+		OrderDto order = orderService.viewOrder(orderId);
+		
+		AjaxResponse<Object> ajaxResponse = new AjaxResponse<Object>("success", order);
 		return new ResponseEntity<Object>(ajaxResponse, HttpStatus.OK); 
 	}
 }

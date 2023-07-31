@@ -22,9 +22,11 @@ public class OrderDto {
 	private String menuName;
 	private double price;
 	private double total;
+	private boolean isPaid;
 	
-	public OrderDto(long menuId, String menuName, double price, int quantity) {
+	public OrderDto(long menuId, boolean isPaid, String menuName, double price, int quantity) {
 		this.menuId = menuId;
+		this.isPaid = isPaid;
 		this.menuName = menuName;
 		this.price = price;
 		this.quantity = quantity;
